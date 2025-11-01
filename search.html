@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/search.css">
+
+    <title>Search - Diwata Yoga</title>
+</head>
+<body>
+
+    <header class="sticky-nav">
+        <nav class="sticky-nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
+            </div>
+
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="information.html">INFORMATION</a></li>
+                    <li><a href="search.html" class="active">SEARCH</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="aboutus.html">ABOUT US</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="search-hero">
+            <div class="search-hero-content fade-in">
+                <h1>Discover Your Practice</h1>
+                <p>Search through our comprehensive library of yoga poses</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container fade-in-up">
+                <form id="searchForm" class="search-form">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Search for yoga poses..." 
+                            class="search-input"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
+            <div class="results-container" id="resultsContainer">
+                <!-- Search results will be displayed here by JavaScript -->
+                <div class="search-suggestions fade-in-up">
+                    <h3>Popular Searches</h3>
+                    <div class="suggestions-grid">
+                        <a href="javascript:void(0)" class="suggestion-tag" data-search="mountain">Mountain Pose</a>
+                        <a href="javascript:void(0)" class="suggestion-tag" data-search="warrior">Warrior Poses</a>
+                        <a href="javascript:void(0)" class="suggestion-tag" data-search="downward">Downward Dog</a>
+                        <a href="javascript:void(0)" class="suggestion-tag" data-search="tree">Tree Pose</a>
+                        <a href="javascript:void(0)" class="suggestion-tag" data-search="child">Child's Pose</a>
+                        <a href="javascript:void(0)" class="suggestion-tag" data-search="cobra">Cobra Pose</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo" class="footer-logo">
+                <p>Experience tranquility and peace through mindful yoga practice.</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Get in Touch</h3>
+                <form id="contactForm" class="contact-form">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Diwata Yoga. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Search functionality for static HTML version
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchForm = document.getElementById('searchForm');
+            const searchInput = document.getElementById('searchInput');
+            const resultsContainer = document.getElementById('resultsContainer');
+            let posesData = [];
+
+            // Load poses data from XML
+            fetch('assets/data/poses.xml')
+                .then(response => response.text())
+                .then(str => {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(str, "application/xml");
+                    const poses = xml.getElementsByTagName('pose');
+                    
+                    posesData = Array.from(poses).map(pose => ({
+                        name: pose.getElementsByTagName('name')[0].textContent,
+                        description: pose.getElementsByTagName('description')[0].textContent,
+                        benefits: pose.getElementsByTagName('benefits')[0].textContent,
+                        difficulty: pose.getElementsByTagName('difficulty')[0].textContent,
+                        image: pose.getElementsByTagName('image')[0].textContent
+                    }));
+                })
+                .catch(error => {
+                    console.error('Error loading poses data:', error);
+                    showError('Could not load pose database. Please try again later.');
+                });
+
+            // Handle search form submission
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const query = searchInput.value.trim().toLowerCase();
+                
+                if (query) {
+                    performSearch(query);
+                }
+            });
+
+            // Handle suggestion clicks
+            document.querySelectorAll('.suggestion-tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const searchTerm = this.getAttribute('data-search');
+                    searchInput.value = searchTerm;
+                    performSearch(searchTerm);
+                });
+            });
+
+            // Perform search function
+            function performSearch(query) {
+                if (!posesData.length) {
+                    showError('Pose data not loaded yet. Please try again.');
+                    return;
+                }
+
+                const results = posesData.filter(pose => 
+                    pose.name.toLowerCase().includes(query) ||
+                    pose.description.toLowerCase().includes(query) ||
+                    pose.benefits.toLowerCase().includes(query)
+                );
+
+                displayResults(results, query);
+            }
+
+            // Display search results
+            function displayResults(results, query) {
+                if (results.length > 0) {
+                    let html = `
+                        <div class="results-header fade-in-up">
+                            <h2>Found ${results.length} result${results.length > 1 ? 's' : ''} for "${query}"</h2>
+                        </div>
+                        <div class="poses-grid">
+                    `;
+
+                    results.forEach((pose, index) => {
+                        const imagePath = 'assets/images/' + pose.image;
+                        const delay = (index % 3) * 0.1;
+                        
+                        html += `
+                            <article class="pose-card fade-in-up" style="--delay: ${delay}s;">
+                                <div class="pose-image-container">
+                                    <img src="${imagePath}" alt="${pose.name}" onerror="this.src='assets/images/logo_diwata_yoga.png'">
+                                    <div class="pose-difficulty ${pose.difficulty.toLowerCase()}">
+                                        ${pose.difficulty}
+                                    </div>
+                                </div>
+                                <div class="pose-content">
+                                    <h3>${pose.name}</h3>
+                                    <p class="pose-description">${pose.description}</p>
+                                    <div class="pose-benefits">
+                                        <h4>Benefits</h4>
+                                        <p>${pose.benefits}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        `;
+                    });
+
+                    html += '</div>';
+                    resultsContainer.innerHTML = html;
+                    
+                    // Trigger animations for new results
+                    setTimeout(() => {
+                        const animatedElements = resultsContainer.querySelectorAll('.fade-in-up');
+                        animatedElements.forEach(el => {
+                            el.classList.add('is-visible');
+                        });
+                    }, 100);
+                } else {
+                    showNoResults(query);
+                }
+            }
+
+            // Show no results message
+            function showNoResults(query) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results fade-in">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>No results found</h3>
+                        <p>We couldn't find any poses matching "<strong>${query}</strong>"</p>
+                        <p class="no-results-tip">Try searching for common poses like "mountain", "warrior", or "downward"</p>
+                    </div>
+                `;
+            }
+
+            // Show error message
+            function showError(message) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results error fade-in">
+                        <div class="no-results-icon">⚠️</div>
+                        <h3>Error</h3>
+                        <p>${message}</p>
+                    </div>
+                `;
+            }
+
+            // Handle URL parameters for direct search links
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchParam = urlParams.get('search');
+            if (searchParam) {
+                searchInput.value = searchParam;
+                performSearch(searchParam);
+            }
+        });
+    </script>
+
+</body>
+</html>

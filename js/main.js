@@ -27,18 +27,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // =================================================================
-    // 2. MOBILE NAVIGATION TOGGLE
+    // 2. MOBILE NAVIGATION TOGGLE - UPDATED
     // =================================================================
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    if (navToggle) {
+    if (navToggle && navLinks) {
         navToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
             
             // Animate hamburger icon
             const hamburger = this.querySelector('.hamburger');
-            hamburger.classList.toggle('active');
+            if (hamburger) {
+                hamburger.classList.toggle('active');
+            }
         });
         
         // Close menu when clicking on a link
@@ -46,8 +48,23 @@ document.addEventListener("DOMContentLoaded", function() {
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                document.querySelector('.hamburger').classList.remove('active');
+                const hamburger = document.querySelector('.hamburger');
+                if (hamburger) {
+                    hamburger.classList.remove('active');
+                }
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navLinks.contains(event.target) || navToggle.contains(event.target);
+            if (!isClickInsideNav && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                const hamburger = document.querySelector('.hamburger');
+                if (hamburger) {
+                    hamburger.classList.remove('active');
+                }
+            }
         });
     }
 

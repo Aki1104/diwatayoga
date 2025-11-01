@@ -12,28 +12,29 @@ Diwata Yoga is a multi-page, static and partially dynamic website designed to be
 
 The project is organized into a clean, easy-to-manage structure.
 
-diwatayoga_project/ 
-│ 
-├── 📄 index.html (Homepage, formerly home.html) 
-├── 📄 information.html (Yoga info, poses, videos) 
-├── 📄 gallery.html (Image gallery) 
-├── 📄 aboutus.html (Coder profiles) 
-├── 📄 search.php (Search page with PHP logic) 
-│ ├── 📁 css/
-│ ├── 📄 global.css (NEW: Fonts, nav, footer, buttons, animations)
-│ ├── 📄 home.css (Homepage-specific styles) 
-│ ├── 📄 information.css (Info page-specific styles) 
-│ ├── 📄 gallery.css (Gallery-specific styles) 
-│ ├── 📄 aboutus.css (About Us-specific styles) 
-│ └── 📄 search.css (Search page-specific styles) 
-│ ├── 📁 js/ 
-│ └── 📄 main.js (NEW: All project JavaScript in one file) 
-│ ├── 📁 assets/ 
-│ │ │ ├── 📁 data/ 
-│ │ └── 📄 poses.xml (Data source for yoga poses) 
-│ │ │ └── 📁 images/ 
-    │ ├── (All .jpg, .png, .webp image files) 
-│ └── 📄 README.md (This file)
+diwatayoga_project/
+├── index.html
+├── information.html
+├── gallery.html
+├── aboutus.html
+├── search.php
+│
+├── css/
+│   ├── global.css
+│   ├── home.css
+│   ├── information.css
+│   ├── gallery.css
+│   ├── aboutus.css
+│   └── search.css
+│
+├── js/
+│   └── main.js
+│
+└── assets/
+    ├── data/
+    │   └── poses.xml
+    └── images/
+        └── (Keep all your existing images)
 
 
 ---
