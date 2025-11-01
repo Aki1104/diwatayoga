@@ -4,10 +4,15 @@
 
 // Initialize EmailJS when the script loads
 (function() {
-    // Initialize EmailJS with your Public Key
-    // Replace 'YOUR_PUBLIC_KEY_HERE' with your actual EmailJS public key
-    emailjs.init("xT9hVOJiXwTvpouPF");
-    console.log('EmailJS initialized');
+    // Check if emailjs is loaded before initializing
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init({
+            publicKey: "xT9hVOJiXwTvpouPF", // Your Public Key
+        });
+        console.log('EmailJS initialized');
+    } else {
+        console.error("EmailJS SDK not loaded.");
+    }
 })();
 
 // Contact form handler
@@ -21,27 +26,16 @@ function setupContactForm() {
     }
     
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
+        e.preventDefault(); // Prevent default form submission
+
+        // Get the button and show a "sending" state
         const submitButton = this.querySelector('button[type="submit"]');
         const originalText = submitButton.textContent;
-        
-        // Show loading state
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
-        
-        // Get form data
-        const formData = {
-            from_name: document.getElementById('name').value,
-            from_email: document.getElementById('email').value,
-            message: document.getElementById('message').value,
-            timestamp: new Date().toLocaleString(),
-            page: window.location.pathname.split('/').pop() || 'index.html'
-        };
-        
-        // Send email using EmailJS
-        // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
-        emailjs.send('service_n4y25i2', 'template_nukxnxz', formData)
+
+        // Send the form using EmailJS - USING sendForm() like your working portfolio
+        emailjs.sendForm('service_n4y25i2', 'template_nukxnxz', this)
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
                 
@@ -87,8 +81,3 @@ function setupContactForm() {
 document.addEventListener('DOMContentLoaded', function() {
     setupContactForm();
 });
-
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { setupContactForm };
-}
