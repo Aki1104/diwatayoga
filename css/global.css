@@ -292,7 +292,7 @@ img {
 }
 
 .footer-logo {
-    height: 60px;
+    height: 300px;
     width: auto;
     margin-bottom: var(--spacing-sm);
 }
