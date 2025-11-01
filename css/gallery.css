@@ -1,82 +1,110 @@
 /* =================================================================
-   GALLERY PAGE STYLES (gallery.css)
+   GALLERY PAGE STYLES (gallery.css) - REDESIGNED
    ================================================================= */
 
-/* =========== 1. Gallery Intro Section =========== */
-.gallery-intro {
-    padding: 40px 20px; /* Reduced padding */
-    background-color: var(--color-light-bg);
+/* =========== 1. Gallery Hero =========== */
+.gallery-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    padding: var(--spacing-xl) var(--spacing-md);
     text-align: center;
-    width: 100%;
+    color: var(--color-text-light);
 }
 
-.gallery-intro .gi-header {
-    font-size: 3em;
-    color: var(--color-dark-blue);
-    margin-bottom: 20px;
+.gallery-hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
 }
 
-.gallery-intro p {
-    font-size: 1.2em;
-    color: var(--color-text-dark);
-    margin-bottom: 30px;
+.gallery-hero-content p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-/* Container for filter buttons */
-.category-buttons {
+/* =========== 2. Gallery Section =========== */
+.gallery-section {
+    background-color: var(--color-background);
+}
+
+.filter-buttons {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-}
-/* Button styles handled by .btn in global.css */
-
-
-/* =========== 2. Image Cards Grid =========== */
-.image-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
 }
 
-.image-card {
-    width: 300px; /* Set a consistent width */
-    height: 250px; /* Set a consistent height */
+/* =========== 3. Gallery Grid =========== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.gallery-item {
+    position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
     cursor: pointer;
-    position: relative; /* For text overlay */
 }
 
-.image-card img {
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.gallery-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.gallery-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image fills card without stretching */
-    transition: transform 0.4s ease;
+    object-fit: cover;
+    transition: var(--transition-slow);
 }
 
-/* Title overlay */
-.image-card h2 {
-    position: absolute; 
-    bottom: 0; 
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.15);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); /* Gradient overlay */
-    color: white;
-    padding: 25px 15px 15px 15px;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    padding: var(--spacing-md);
+    transform: translateY(0);
+    transition: var(--transition-medium);
+}
+
+.gallery-overlay h3 {
+    color: var(--color-text-light);
+    font-size: 1.35rem;
     margin: 0;
-    font-size: 1.3em;
-    transition: color 0.3s ease;
 }
 
-/* --- Hover Effects --- */
-.image-card:hover img {
-    transform: scale(1.1); /* Zoom image on hover */
+.gallery-item:hover .gallery-overlay {
+    background: linear-gradient(to top, rgba(45, 95, 93, 0.95) 0%, rgba(45, 95, 93, 0.6) 60%, transparent 100%);
 }
 
-.image-card:hover h2 {
-    color: var(--color-green-primary);
+/* =========== 4. Responsive Design =========== */
+@media (max-width: 768px) {
+    .gallery-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-image {
+        height: 250px;
+    }
 }

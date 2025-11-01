@@ -1,375 +1,332 @@
 /* =================================================================
-   INFORMATION PAGE STYLES (information.css)
+   INFORMATION PAGE STYLES (information.css) - REDESIGNED
    ================================================================= */
 
-/* =========== 1. Hero Section =========== */
-.background-image {
-    position: relative;
-    /* UPDATED PATH: 'gradient1.jpg' is in 'assets/images/', 
-       and we are in the 'css/' folder, so we go up one ('../') */
-    background: url('../assets/images/gradient1.jpg') no-repeat center center/cover;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px; /* Rounded corners for the hero */
-    margin: 20px; /* Spacing from header and content */
-    max-width: 1600px; /* Wider max-width for hero */
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.glass-effect {
-    background: rgba(255, 255, 255, 0.2); /* Lighter glass effect */
-    min-height: 25vh;
-    width: 80vw;
-    max-width: 900px;
-    border-radius: 15px;
-    padding: 30px;
+/* =========== 1. Info Hero =========== */
+.info-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    padding: var(--spacing-xl) var(--spacing-md);
     text-align: center;
-    color: var(--color-dark-blue);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    color: var(--color-text-light);
+    position: relative;
+    overflow: hidden;
 }
 
-.glass-effect h1 {
-    margin: 0;
-    font-size: 3.5em;
-    padding: 10px 0;
-    color: var(--color-dark-blue);
+.info-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../assets/images/gradient1.jpg') no-repeat center center/cover;
+    opacity: 0.2;
 }
 
-/* =========== 2. Main Content (Two Columns) =========== */
+.info-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.info-hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.info-hero-content p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* =========== 2. Main Content Grid =========== */
 .main-content {
-    display: flex;
-    flex-wrap: wrap; /* Allows stacking on mobile */
-    justify-content: space-between;
-    gap: 30px;
-    background-color: var(--color-light-bg);
+    background-color: var(--color-background);
 }
 
-.left-side {
-    flex: 2; /* Takes 2/3 of the space */
-    min-width: 300px;
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
 }
 
-.right-side {
-    flex: 1; /* Takes 1/3 of the space */
-    min-width: 300px;
+.content-large,
+.content-small {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.content-image img,
+.video-embed iframe {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+.video-embed {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+.video-embed iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.content-text {
+    padding: var(--spacing-lg);
+}
+
+.content-text h2 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+}
+
+.content-text h3 {
+    color: var(--color-primary);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
+}
+
+.content-text p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+}
+
+.content-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Spaces the two right-side cards */
-}
-
-.image-container {
-    margin-bottom: 20px;
-    overflow: hidden; /* For rounded corners */
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.image-container img {
-    width: 100%;
-    height: auto;
-    display: block; /* Removes bottom space */
-    transition: transform 0.4s ease;
-}
-
-.image-container:hover img {
-    transform: scale(1.05); /* Zoom effect on hover */
-}
-
-.text-container-left,
-.text-container {
-    padding: 30px;
-    background-color: var(--color-light-card); 
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-.text-container-left h2,
-.text-container h2 {
-    color: var(--color-dark-blue);
-    margin-bottom: 15px;
-    font-size: 2em;
-}
-
-.text-container-left h4 {
-    color: var(--color-dark-blue);
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-size: 1.3em;
-}
-
-.text-container-left p,
-.text-container p {
-    color: var(--color-text-dark);
-    letter-spacing: 0.5px; 
-    font-size: 1rem;
-}
-
-/* Button styles are handled by .btn in global.css */
-.text-container-left button,
-.text-container button {
-    margin-top: 20px;
-}
-
-.videotop-container {
-    margin-bottom: 20px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.videotop-container iframe {
-    width: 100%;
-    height: 250px; /* Adjusted height */
-    display: block;
+    gap: var(--spacing-lg);
 }
 
 /* =========== 3. Articles Section =========== */
 .articles-section {
-    text-align: center;
-    color: var(--color-dark-blue);
-    background-color: #D6E5E3;
+    background: linear-gradient(to bottom, var(--color-background), var(--color-surface));
 }
 
-.articles-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
 }
 
-.articles-section p {
-    font-size: 1.1em;
-    color: var(--color-text-dark);
-    max-width: 800px;
-    margin: 0 auto 25px auto;
-}
-
-.article-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch; /* Equal height cards */
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.article {
-    background: var(--color-light-card);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.article-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    text-align: center;
-    width: 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
 }
 
-.article:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
 }
 
-.article img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.article h2 {
-    font-size: 1.5em;
-    margin: 20px 15px 10px 15px;
-    color: var(--color-dark-blue);
-}
-
-.article p {
-    padding: 0 15px 10px 15px;
-    font-size: 1em;
-    color: var(--color-text-dark);
-    flex-grow: 1; /* Pushes text down */
-}
-
-.article h4 {
-    font-size: 1em;
-    margin: 0 0 15px 0;
-    color: var(--color-medium-blue);
-    font-weight: 500;
-}
-
-/* Button styles handled by .btn */
-.article button {
-    margin: 0 auto 20px auto;
-    width: 85%;
-}
-
-/* =========== 4. Basic Positions Section =========== */
-.basic-positions-section {
-    text-align: center;
-    color: var(--color-dark-blue);
-    background-color: var(--color-light-bg);
-}
-
-.basic-positions-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.basic-positions-section p {
-    font-size: 1.1em;
-    color: var(--color-text-dark);
-    max-width: 800px;
-    margin: 0 auto 25px auto;
-}
-
-/* Container for filter buttons */
-.category-buttons {
-    margin-bottom: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-/* Button styles handled by .btn in global.css */
-
-.basic-positions-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-/* Styling for each position card */
-.position {
-    background: var(--color-light-card);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.article-image {
+    height: 220px;
     overflow: hidden;
-    text-align: center;
-    width: 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Changed to flex for better layout */
-    flex-direction: column;
 }
 
-.position:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.position img {
+.article-image img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
+    transition: var(--transition-slow);
 }
 
-.position h2 {
-    font-size: 1.5em;
-    margin: 20px 15px 10px 15px;
-    color: var(--color-dark-blue);
+.article-card:hover .article-image img {
+    transform: scale(1.1);
 }
 
-.position p {
-    padding: 0 15px 10px 15px;
-    font-size: 1em;
-    color: var(--color-text-dark);
-    flex-grow: 1; /* Pushes h4 to the bottom */
+.article-content {
+    padding: var(--spacing-md);
 }
 
-.position h4 {
-    font-size: 1em;
-    margin: 0 0 15px 0;
-    color: var(--color-green-primary);
-    font-weight: 700;
+.article-content h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.5rem;
+}
+
+.article-author {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: var(--spacing-sm);
+}
+
+.article-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+/* =========== 4. Positions Section =========== */
+.positions-section {
+    background-color: var(--color-surface);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.positions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.position-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-medium);
+}
+
+.position-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+}
+
+.position-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.position-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
+}
+
+.position-card:hover .position-image img {
+    transform: scale(1.1);
+}
+
+.difficulty-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.difficulty-badge.easy {
+    color: #10B981;
+}
+
+.difficulty-badge.intermediate {
+    color: #F59E0B;
+}
+
+.difficulty-badge.hard {
+    color: #EF4444;
+}
+
+.position-content {
+    padding: var(--spacing-md);
+}
+
+.position-content h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.35rem;
+}
+
+.position-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
 }
 
 /* =========== 5. Videos Section =========== */
-.video-section {
-    text-align: center;
-    color: var(--color-dark-blue);
-    background-color: var(--color-light-card); /* White background */
+.videos-section {
+    background: linear-gradient(to bottom, var(--color-surface), var(--color-background));
 }
 
-.video-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
 }
 
-.video-section p {
-    font-size: 1.1em;
-    color: var(--color-text-dark);
-    max-width: 800px;
-    margin: 0 auto 25px auto;
-}
-
-/* Container for video filter buttons */
-.video-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-/* Button styles handled by .btn in global.css */
-
-.video-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-    margin: 10px 0;
-}
-
-.video {
-    width: 100%;
-    max-width: 500px; /* Controls max size */
-    flex-grow: 1; /* Allows flexible sizing */
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.video-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
 }
 
-.video:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
 }
 
-.video iframe {
-    width: 100%;
-    height: 300px; /* Taller iframe */
-    display: block;
+.video-card .video-embed {
+    height: 250px;
 }
 
-/* Text content for video card */
-.video-text {
-    padding: 20px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Fills remaining space */
+.video-content {
+    padding: var(--spacing-md);
 }
 
-.video h2 {
-    font-size: 1.3em;
-    font-weight: 700;
-    margin: 0 0 10px 0;
+.video-content h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.35rem;
 }
 
-.video p {
-    font-size: 0.95em;
-    flex-grow: 1;
-    margin: 0 0 15px 0;
-}
-
-.video h4 {
-    font-size: 1em;
+.video-author {
+    color: var(--color-accent);
+    font-size: 0.9rem;
     font-style: italic;
-    color: var(--color-medium-blue);
-    margin: 0;
+    margin-bottom: var(--spacing-sm);
+}
+
+.video-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* =========== 6. Responsive Design =========== */
+@media (max-width: 968px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-sidebar {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .articles-grid,
+    .positions-grid,
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
 }

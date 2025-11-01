@@ -1,211 +1,406 @@
 /* =================================================================
-   GLOBAL STYLESHEET (global.css)
-   -----------------------------------------------------------------
-   This file contains all shared styles, fonts, variables, 
-   animations, and resets for the *entire* Diwata Yoga website.
+   GLOBAL STYLESHEET (global.css) - REDESIGNED
+   Modern, Professional Styling for Diwata Yoga
    ================================================================= */
 
 /* =========== 1. Font Import =========== */
-/* We're importing "Inter", a clean, professional, and modern font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
-/* =========== 2. CSS Variables (Color Palette) =========== */
-/* Using variables makes it easy to change the site's colors later */
+/* =========== 2. CSS Variables =========== */
 :root {
-    --color-dark-blue: #1C2735;
-    --color-medium-blue: #4e6c92;
-    --color-green-primary: #4CAF50;
-    --color-green-dark: #45a049;
-    --color-light-bg: #F0F4F8;
-    --color-light-card: #FFFFFF;
-    --color-text-dark: #333;
-    --color-text-light: #F0F4F8;
-    --font-primary: 'Inter', 'Arial', sans-serif;
+    /* Colors */
+    --color-primary: #2D5F5D;
+    --color-primary-light: #3A7A77;
+    --color-primary-dark: #1F4544;
+    --color-accent: #C9A978;
+    --color-accent-light: #E0C79F;
+    --color-background: #F8F9FA;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #2C3E50;
+    --color-text-secondary: #5A6C7D;
+    --color-text-light: #FFFFFF;
+    --color-border: #E5E7EB;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Fonts */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
-/* =========== 3. Global Resets & Base Styles =========== */
+/* =========== 3. Global Resets =========== */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Professional standard for layout */
+    box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth; /* Enables smooth scrolling for links */
+    scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 body {
-    font-family: var(--font-primary);
-    background-color: var(--color-light-bg);
-    color: var(--color-text-dark);
-    line-height: 1.6; /* Improves readability */
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Base styles for semantic tags */
 main {
     width: 100%;
-    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+    overflow-x: hidden;
 }
 
 section {
-    padding: 60px 20px; /* Standard vertical spacing for sections */
+    padding: var(--spacing-xl) var(--spacing-md);
     width: 100%;
-    max-width: 1400px; /* Constrains content width */
-    margin: 0 auto; /* Centers the content */
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-/* =========== 4. Reusable Button Styles =========== */
-/* A global '.btn' class for all buttons */
-.btn {
-    background-color: var(--color-green-primary);
-    color: var(--color-light-card);
-    border: none;
-    padding: 12px 24px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 8px; /* Softer, modern corners */
-    font-weight: 500;
-    font-size: 1rem;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--color-text-secondary);
+}
+
+a {
     text-decoration: none;
+    color: inherit;
+    transition: var(--transition-medium);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========== 4. Button Styles =========== */
+.btn {
     display: inline-block;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn:hover {
-    background-color: var(--color-green-dark);
-    transform: translateY(-2px); /* Adds a slight "lift" effect */
-}
-
-/* Style for active filter buttons (toggled by main.js) */
-.btn.active {
-    background-color: var(--color-dark-blue);
-    color: var(--color-light-bg);
-}
-
-/* Primary button (like in the hero section) */
-.btn-primary {
-    background-color: var(--color-green-primary);
-    border: none;
-    width: 200px;
-    color: white;
-    padding: 15px 32px;
+    padding: 0.875rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
     text-align: center;
-    letter-spacing: 2px;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: var(--transition-medium);
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
 }
 
 .btn-primary:hover {
-    background-color: var(--color-green-dark);
+    background-color: var(--color-primary-dark);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
+.btn-secondary {
+    background-color: var(--color-accent);
+    color: var(--color-text-primary);
+}
 
-/* =========== 5. Header & Navigation (Shared) =========== */
-/* This style is now global and applies to all pages */
+.btn-secondary:hover {
+    background-color: var(--color-accent-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn.active {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+}
+
+/* =========== 5. Navigation =========== */
 .sticky-nav {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--color-dark-blue);
-    padding: 10px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Adds depth */
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .sticky-nav-container {
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 1400px; /* Matches section width */
+    justify-content: space-between;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 1rem 2rem;
 }
 
-.sticky-nav .logo {
-    flex-shrink: 0;
-    margin-right: 20px; /* Adds space between logo and links */
-}
-
-.sticky-nav .logo img {
+.logo img {
     height: 50px;
-    transition: transform 0.3s ease;
+    transition: var(--transition-medium);
 }
 
-.sticky-nav .logo:hover img {
-    transform: scale(1.1);
+.logo:hover img {
+    transform: scale(1.05);
 }
 
-.sticky-nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-    align-items: center;
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
 }
 
-.sticky-nav ul li {
-    margin: 0 10px;
-}
-
-.sticky-nav ul li a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    padding: 14px 20px;
+.hamburger {
     display: block;
-    text-align: center;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    position: relative;
+    transition: var(--transition-medium);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 2px;
+    background-color: var(--color-text-primary);
+    transition: var(--transition-medium);
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 0.75rem 1.25rem;
+    color: var(--color-text-primary);
     font-weight: 500;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-medium);
 }
 
-.sticky-nav ul li a:hover {
-    background-color: var(--color-medium-blue);
-    color: var(--color-light-card);
+.nav-links li a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
 }
 
-/* Highlights the current page's nav link */
-.sticky-nav ul li a.active {
-    color: var(--color-green-primary);
-    font-weight: 700;
+.nav-links li a.active {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
 }
 
-/* =========== 6. Animation Keyframes =========== */
-/* Defines the animations that main.js will trigger */
+/* =========== 6. Section Headers =========== */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-header h2 {
+    font-size: 2.75rem;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-header p {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========== 7. Footer =========== */
+.site-footer {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-light);
+    padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-info p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.footer-contact h3 {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 0.875rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text-light);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: var(--transition-medium);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.contact-form button {
+    width: 100%;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* =========== 8. Animation Keyframes =========== */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { 
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { 
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-/* =========== 7. Animation Utility Classes =========== */
-/* These classes are in the HTML. They start as invisible. */
+/* =========== 9. Animation Classes =========== */
 .fade-in,
 .fade-in-up,
 .slide-in-left,
 .slide-in-right {
     opacity: 0;
-    /* This variable allows staggered delays (e.g., style="--delay: 0.1s;") */
-    animation-delay: var(--delay, 0s); 
+    animation-delay: var(--delay, 0s);
 }
 
-/* The 'main.js' file adds 'is-visible' when the element scrolls into view */
 .fade-in.is-visible {
     animation: fadeIn 0.8s ease forwards;
 }
@@ -222,38 +417,60 @@ section {
     animation: slideInRight 0.8s ease forwards;
 }
 
-/* =========== 8. Basic Responsive (Mobile) Styles =========== */
+/* =========== 10. Responsive Design =========== */
 @media (max-width: 768px) {
-    /* Stacks nav links on mobile */
+    html {
+        font-size: 14px;
+    }
+    
     .sticky-nav-container {
-        flex-direction: column;
+        padding: 1rem;
     }
-
-    .sticky-nav ul {
+    
+    .nav-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--color-surface);
+        box-shadow: var(--shadow-md);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .nav-links.active {
+        max-height: 400px;
+    }
+    
+    .nav-links ul {
         flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .nav-links li {
         width: 100%;
-        margin-top: 10px;
     }
-
-    .sticky-nav ul li {
+    
+    .nav-links li a {
         width: 100%;
         text-align: center;
+        padding: 1rem;
     }
-
-    .sticky-nav ul li a {
-        padding: 10px;
-    }
-
-    /* Adjust section padding for smaller screens */
+    
     section {
-        padding: 40px 15px;
+        padding: var(--spacing-lg) var(--spacing-sm);
     }
-
-    /* Fix hero text size */
-    .glass-effect h1 {
-        font-size: 2.5em;
+    
+    .section-header h2 {
+        font-size: 2rem;
     }
-    .glass-effect h3 {
-        font-size: 1.5em;
-    }
+    
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
 }

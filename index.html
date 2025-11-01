@@ -3,238 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Link to NEW global stylesheet (for fonts, animations, shared styles) -->
-    <link rel="stylesheet" href="css/global.css">
-    <!-- Link to the page-specific stylesheet -->
-    <link rel="stylesheet" href="css/home.css">
-    
     <title>Home - Diwata Yoga</title>
+    
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
 
-    <!-- =========== Header & Navigation Bar =========== -->
-    <!-- <header> is a semantic tag for the top of the page -->
     <header class="sticky-nav">
-        <!-- <nav> is a semantic tag for navigation links -->
         <nav class="sticky-nav-container">
-            <!-- Logo with link to home -->
             <div class="logo">
-                <a href="home.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
+                <a href="index.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
             </div>
-            <!-- Navigation Links -->
-            <ul>
-                <!-- 'active' class highlights the current page -->
-                <li><a href="home.html" class="active">HOME</a></li>
-                <li><a href="information.html">INFORMATION</a></li>
-                <li><a href="search.php">SEARCH</a></li>
-                <li><a href="gallery.html">GALLERY</a></li>
-                <li><a href="aboutus.html">ABOUT US</a></li>
-            </ul>
+
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="active">HOME</a></li>
+                    <li><a href="information.html">INFORMATION</a></li>
+                    <li><a href="search.php">SEARCH</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="aboutus.html">ABOUT US</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
-    <!-- =========== Main Content =========== -->
     <main>
 
-        <!-- =========== Hero Section =========== -->
-        <!-- This is the main background image at the top of the page -->
-        <section class="background-image">
-            <!-- "Frosted glass" container for the main call-to-action -->
-            <!-- Added 'fade-in' class for animation -->
-            <div class="glass-effect fade-in">
-                <h1>COLLECT. BREATH. TRANSFORM.</h1>
-                <!-- Button that links to the information page -->
-                <form action="information.html">
-                    <button type="submit" class="btn btn-primary">Join us!</button>
-                </form>
-                <h3>Welcome to Diwata Yoga</h3>
-                <p>
-                    Experience tranquility and peace through our immersive yoga sessions 
-                    designed to nurture your mind, body, and spirit.
-                </p>
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">COLLECT. BREATHE. TRANSFORM.</h1>
+                <p class="hero-subtitle">Experience tranquility and peace through our immersive yoga sessions</p>
+                <a href="information.html" class="btn btn-primary btn-large">Begin Your Journey</a>
             </div>
         </section>
 
-        <!-- =========== "At a Glance" Feature Cards =========== -->
-        <!-- <section> is a semantic tag for a page section -->
-        <section class="cards-section">
-            <h2 class="cs-header fade-in-up">At a Glance of Diwata Yoga</h2>
-            <!-- Container for all the feature cards -->
-            <div class="card-container">
+        <section class="features-section">
+            <div class="section-header fade-in-up">
+                <h2>Why Choose Diwata Yoga</h2>
+                <p>Discover what makes us different</p>
+            </div>
+            
+            <div class="features-grid">
                 
-                <!-- Card 1: User-Friendly -->
-                <!-- <article> is a semantic tag for self-contained content -->
-                <!-- Added 'fade-in-up' class for animation -->
-                <article class="card fade-in-up" style="--delay: 0s;">
-                    <a href="assets/images/pose_camatkarasana.jpg" target="_blank"><img src="assets/images/pose_camatkarasana.jpg" alt="Camatkarasana Pose Photo"></a>
-                    <h2>User-Friendly Platform</h2>
-                    <p>
-                        Our intuitive interface ensures a seamless experience, making it easy for you to find 
-                        and join your favorite yoga classes with just a few clicks.
-                    </p>
+                <article class="feature-card fade-in-up" style="--delay: 0s;">
+                    <div class="feature-icon">🧘‍♀️</div>
+                    <h3>Expert Instruction</h3>
+                    <p>Learn from certified yoga instructors with years of experience in various yoga styles and practices.</p>
                 </article>
                 
-                <!-- Card 2: Class Library -->
-                <article class="card fade-in-up" style="--delay: 0.1s;">
-                    <a href="assets/images/pose_warriorI.jpg" target="_blank"><img src="assets/images/pose_warriorI.jpg" alt="Warrior Pose Photo"></a>
-                    <h2>Class Library</h2>
-                    <p>
-                        Access a wide range of yoga styles and levels, from beginner to advanced, 15 mins, 
-                        30 mins, 1 hour, and more, all available on-demand.
-                    </p>
+                <article class="feature-card fade-in-up" style="--delay: 0.1s;">
+                    <div class="feature-icon">📚</div>
+                    <h3>Extensive Library</h3>
+                    <p>Access hundreds of classes ranging from beginner to advanced levels, available anytime you need them.</p>
                 </article>
                 
-                <!-- Card 3: Expert Instructors -->
-                <article class="card fade-in-up" style="--delay: 0.2s;">
-                    <a href="assets/images/yogagroup1.jpg" target="_blank"><img src="assets/images/yogagroup1.jpg" alt="Yoga Group Photo"></a>
-                    <h2>Expert Instructors</h2>
-                    <p>
-                        Learn from certified yoga instructors who guide you through each session with clear, 
-                        detailed instructions and modifications for all levels.
-                    </p>
+                <article class="feature-card fade-in-up" style="--delay: 0.2s;">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Personalized Growth</h3>
+                    <p>Receive tailored recommendations based on your goals, preferences, and current skill level.</p>
                 </article>
                 
-                <!-- Card 4: Community Support -->
-                <article class="card fade-in-up" style="--delay: 0s;">
-                    <a href="assets/images/pose_marichyasana_c.jpg" target="_blank"><img src="assets/images/pose_marichyasana_c.jpg" alt="Marichyasana C Pose Photo"></a>
-                    <h2>Community Support</h2>
-                    <p>
-                        Join a supportive community of fellow yoga enthusiasts. Share your progress, get tips, and 
-                        stay motivated with our interactive forums and social media groups.
-                    </p>
-                </article>
-                
-                <!-- Card 5: Personalized -->
-                <article class="card fade-in-up" style="--delay: 0.1s;">
-                    <a href="assets/images/pose_warriorIII.jpg" target="_blank"><img src="assets/images/pose_warriorIII.jpg" alt="Warrior III Pose Photo"></a>
-                    <h2>Personalized Experience</h2>
-                    <p>
-                        Tailor your unique yoga journey with personalized class recommendations crafted 
-                        specifically for you, based on your individual preferences, goals, and skill level.
-                    </p>
-                </article>
-                
-                <!-- Card 6: Free to Use -->
-                <article class="card fade-in-up" style="--delay: 0.2s;">
-                    <a href="assets/images/pose_skandasana.jpg" target="_blank"><img src="assets/images/pose_skandasana.jpg" alt="Skandasana Pose Photo"></a>
-                    <h2>Free to Use</h2>
-                    <p>
-                        Enjoy access to a variety of yoga classes and resources at no cost, making it 
-                        easy for everyone to start their yoga journey without financial barriers.
-                    </p>
+                <article class="feature-card fade-in-up" style="--delay: 0.3s;">
+                    <div class="feature-icon">💚</div>
+                    <h3>Free Access</h3>
+                    <p>Enjoy unlimited access to our yoga resources completely free, removing all barriers to practice.</p>
                 </article>
             </div>
         </section>
 
-        <!-- =========== Testimonials Section =========== -->
-        <section class="testimonials-section">
-            <h2 class="fade-in-up">What Our Students Say</h2>
-            <div class="testimonial-container">
+        <section class="showcase-section">
+            <div class="section-header fade-in-up">
+                <h2>Explore Our Offerings</h2>
+                <p>From poses to philosophy, we cover it all</p>
+            </div>
+
+            <div class="showcase-grid">
                 
-                <!-- Testimonial 1 -->
-                <div class="testimonial fade-in-up" style="--delay: 0s;">
-                    <p>
-                        "Diwata Yoga has transformed my life. The instructors are amazing and the community 
-                        is so supportive!"
-                    </p>
-                    <h3>- Sarah K.</h3>
-                </div>
+                <article class="showcase-card fade-in-up" style="--delay: 0s;">
+                    <div class="showcase-image">
+                        <img src="assets/images/pose_camatkarasana.jpg" alt="Yoga Pose">
+                        <div class="showcase-overlay">
+                            <a href="information.html" class="btn btn-secondary">Explore Poses</a>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Yoga Positions</h3>
+                        <p>Master fundamental to advanced asanas with detailed instructions and benefits.</p>
+                    </div>
+                </article>
                 
-                <!-- Testimonial 2 -->
-                <div class="testimonial fade-in-up" style="--delay: 0.1s;">
-                    <p>
-                        "I've found so much peace and balance in my life since joining Diwata Yoga. 
-                        Highly recommend to everyone!"
-                    </p>
-                    <h3>- John D.</h3>
-                </div>
+                <article class="showcase-card fade-in-up" style="--delay: 0.1s;">
+                    <div class="showcase-image">
+                        <img src="assets/images/yogagroup1.jpg" alt="Yoga Group">
+                        <div class="showcase-overlay">
+                            <a href="information.html#scrollVideoTarget" class="btn btn-secondary">Watch Videos</a>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Video Tutorials</h3>
+                        <p>Follow along with guided sessions from 15 minutes to full hour practices.</p>
+                    </div>
+                </article>
                 
-                <!-- Testimonial 3 -->
-                <div class="testimonial fade-in-up" style="--delay: 0.2s;">
-                    <p>
-                        "The classes are well-structured and the environment is very welcoming. 
-                        It's the best part of my day!"
-                    </p>
-                    <h3>- Emily R.</h3>
-                </div>
+                <article class="showcase-card fade-in-up" style="--delay: 0.2s;">
+                    <div class="showcase-image">
+                        <img src="assets/images/pose_warriorI.jpg" alt="Warrior Pose">
+                        <div class="showcase-overlay">
+                            <a href="gallery.html" class="btn btn-secondary">View Gallery</a>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Inspiration Gallery</h3>
+                        <p>Browse beautiful imagery from our community and instructors for motivation.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- =========== Instructors Section =========== -->
         <section class="instructors-section">
-            <h2 class="is-header fade-in-up">Meet Our Instructors</h2>
-            <div class="instructor-container">
+            <div class="section-header fade-in-up">
+                <h2>Meet Our Instructors</h2>
+                <p>Learn from the best in the field</p>
+            </div>
+
+            <div class="instructor-grid">
                 
-                <!-- Instructor 1: Esther Ekhart -->
-                <div class="instructor fade-in-up" style="--delay: 0s;">
-                    <a href="assets/images/instructor_esther_ekhart.jpg" target="_blank"><img src="assets/images/instructor_esther_ekhart.jpg" alt="Esther Ekhart's photo"></a>
-                    <h2>Esther Ekhart </h2>
-                    <p>
-                        Esther Ekhart, brings years of personal yoga and meditation practice, 
-                        therapy training, and study of yoga philosophy into her teaching.
-                    </p>
+                <article class="instructor-card fade-in-up" style="--delay: 0s;">
+                    <div class="instructor-image">
+                        <img src="assets/images/instructor_esther_ekhart.jpg" alt="Esther Ekhart">
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Esther Ekhart</h3>
+                        <p class="instructor-title">Lead Instructor</p>
+                        <p>Esther brings years of yoga and meditation practice, combining therapy training with deep yoga philosophy.</p>
+                    </div>
+                </article>
+                
+                <article class="instructor-card fade-in-up" style="--delay: 0.1s;">
+                    <div class="instructor-image">
+                        <img src="assets/images/instructor_david_lurey.jpg" alt="David Lurey">
+                    </div>
+                    <div class="instructor-info">
+                        <h3>David Lurey</h3>
+                        <p class="instructor-title">Vinyasa Specialist</p>
+                        <p>David weaves spiritual themes into intelligent sequences, enhanced with music and authentic humor.</p>
+                    </div>
+                </article>
+                
+                <article class="instructor-card fade-in-up" style="--delay: 0.2s;">
+                    <div class="instructor-image">
+                        <img src="assets/images/instructor_julie_martin.jpg" alt="Julie Martin">
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Julie Martin</h3>
+                        <p class="instructor-title">Movement Artist</p>
+                        <p>Julie encourages freedom in movement and evolution of practice through intelligent yoga rebellion.</p>
+                    </div>
+                </article>
+                
+                <article class="instructor-card fade-in-up" style="--delay: 0.3s;">
+                    <div class="instructor-image">
+                        <img src="assets/images/instructor_david_kam.jpg" alt="David Kam">
+                    </div>
+                    <div class="instructor-info">
+                        <h3>David Kam</h3>
+                        <p class="instructor-title">Creative Flow</p>
+                        <p>David champions movement as a transformative practice through curiosity and creative exploration.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="section-header fade-in-up">
+                <h2>What Our Community Says</h2>
+                <p>Real experiences from real people</p>
+            </div>
+
+            <div class="testimonials-grid">
+                
+                <div class="testimonial-card fade-in-up" style="--delay: 0s;">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>Diwata Yoga has transformed my life. The instructors are amazing and the community is so supportive!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Sarah K.</h4>
+                        <p>Member since 2023</p>
+                    </div>
                 </div>
                 
-                <!-- Instructor 2: David Lurey -->
-                <div class="instructor fade-in-up" style="--delay: 0.1s;">
-                    <a href="assets/images/instructor_david_lurey.jpg" target="_blank"><img src="assets/images/instructor_david_lurey.jpg" alt="David Lurey's Photo"></a>
-                    <h2>David Lurey</h2>
-                    <p>David Lurey interweaves spiritual teaching themes into his instruction, along with intelligent sequencing, a heartfelt passion for music, and a dose of humor.</p>
+                <div class="testimonial-card fade-in-up" style="--delay: 0.1s;">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>I've found so much peace and balance in my life since joining Diwata Yoga. Highly recommend to everyone!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>John D.</h4>
+                        <p>Member since 2022</p>
+                    </div>
                 </div>
                 
-                <!-- Instructor 3: Julie Martin -->
-                <div class="instructor fade-in-up" style="--delay: 0.2s;">
-                    <a href="assets/images/instructor_julie_martin.jpg" target="_blank"><img src="assets/images/instructor_julie_martin.jpg" alt="Julie Martin's Photo"></a>
-                    <h2>Julie Martin</h2>
-                    <p>Julie Martin encourages freedom in movement and the evolution of your personal and teaching practice. Join her in the intelligent yoga rebellion!</p>
-                </div>
-                
-                <!-- Instructor 4: David Kam -->
-                <div class="instructor fade-in-up" style="--delay: 0.3s;">
-                    <a href="assets/images/instructor_david_kam.jpg" target="_blank"><img src="assets/images/instructor_david_kam.jpg" alt="David Kam's photo"></a>
-                    <h2>David Kam</h2>
-                    <p>David Kam is an innovative movement artist on a mission to champion movement as a creative and transformative practice through curiosity and exploration.</p>
+                <div class="testimonial-card fade-in-up" style="--delay: 0.2s;">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">"</div>
+                        <p>The classes are well-structured and the environment is very welcoming. It's the best part of my day!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Emily R.</h4>
+                        <p>Member since 2024</p>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
     
-    <!-- =========== Footer Section =========== -->
-    <!-- <footer> is a semantic tag for the bottom of the page -->
-    <footer class="contact-section">
-        <div class="contact-content">
-            <!-- Image on the left of the form -->
-            <!-- Added 'slide-in-left' animation class -->
-            <div class="contact-image-wrapper slide-in-left">
-                <a href="assets/images/yogagroup2.jpeg" target="_blank"><img src="assets/images/yogagroup2.jpeg" alt="Yoga Group Photo" class="contact-image"></a>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo" class="footer-logo">
+                <p>Experience tranquility and peace through mindful yoga practice.</p>
             </div>
             
-            <!-- Contact form wrapper -->
-            <!-- Added 'slide-in-right' animation class -->
-            <div class="contact-form-wrapper slide-in-right">
-                <h2 class="cs-header">Message Us Here!</h2>
-                <!-- The 'id' is used by the JavaScript -->
+            <div class="footer-contact">
+                <h3>Get in Touch</h3>
                 <form id="contactForm" class="contact-form">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-    
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-    
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-    
-                    <!-- Added 'btn' class for global styling -->
-                    <button type="submit" class="btn">Send Message</button>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
             </div>
         </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Diwata Yoga. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- =========== JavaScript =========== -->
-    <!-- All JavaScript is now linked from an external file for faster loading and cleaner code -->
     <script src="js/main.js"></script>
 
 </body>

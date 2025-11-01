@@ -1,17 +1,7 @@
 /**
  * ----------------------------------------------------------------
- * Diwata Yoga Main JavaScript File
+ * Diwata Yoga Main JavaScript File - REDESIGNED
  * ----------------------------------------------------------------
- * This file contains all the JavaScript for the website.
- *
- * Contents:
- * 1. Intersection Observer (for scroll animations)
- * 2. Contact Form 'sendMessage' Function
- * 3. Information Page Scroll Functions
- * 4. Information Page External Link Functions
- * 5. Filter Functions (for Positions, Videos, Gallery)
- * 6. Active Button Toggle Logic (for all filters)
- *
  */
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -19,56 +9,74 @@ document.addEventListener("DOMContentLoaded", function() {
     // =================================================================
     // 1. INTERSECTION OBSERVER (for scroll animations)
     // =================================================================
-    // This code makes elements with classes like 'fade-in-up' animate
-    // when they scroll into view.
-
-    // Select all elements you want to animate
     const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up, .slide-in-left, .slide-in-right');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add an 'is-visible' class when the element is in view
                 entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Stop observing after it's visible
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1 // Trigger when 10% of the element is visible
+        threshold: 0.1
     });
 
-    // Observe each animated element
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 
     // =================================================================
-    // 2. CONTACT FORM 'sendMessage' FUNCTION (from home.html)
+    // 2. MOBILE NAVIGATION TOGGLE
     // =================================================================
-    // Note: We attach this to the window object so the inline 'onclick'
-    // in the HTML can find it.
-    window.sendMessage = function() {
-        const form = document.getElementById('contactForm');
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navToggle) {
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger icon
+            const hamburger = this.querySelector('.hamburger');
+            hamburger.classList.toggle('active');
+        });
         
-        // Basic validation
-        if (name === '' || email === '' || message === '') {
-            // Using a custom modal/alert is better, but 'alert' works for now.
-            alert('Please fill in all fields.');
-            return false; // Prevents form submission
-        }
-        
-        // Success message
-        alert('Your message has been sent!');
-        
-        form.reset(); // Clears the form fields
-        return false; // Prevents the page from reloading
+        // Close menu when clicking on a link
+        const navItems = navLinks.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
+            });
+        });
     }
 
     // =================================================================
-    // 3. INFORMATION PAGE SCROLL FUNCTIONS (from information.html)
+    // 3. CONTACT FORM HANDLER
+    // =================================================================
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name === '' || email === '' || message === '') {
+                alert('Please fill in all fields.');
+                return false;
+            }
+            
+            alert('Thank you for your message! We\'ll get back to you soon.');
+            this.reset();
+            return false;
+        });
+    }
+
+    // =================================================================
+    // 4. SMOOTH SCROLL FOR INFORMATION PAGE
     // =================================================================
     const scrollPositionBtn = document.getElementById('scrollPosition');
     const scrollVideoBtn = document.getElementById('scrollVideo');
@@ -85,11 +93,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
     
-    // Helper function for smooth scrolling
     function scrollToTarget(targetId) {
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
-            const offset = 70; // Offset for the sticky header
+            const offset = 80;
             const targetPosition = targetElement.offsetTop - offset;
 
             window.scrollTo({
@@ -100,10 +107,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // =================================================================
-    // 4. INFORMATION PAGE EXTERNAL LINK FUNCTIONS (from information.html)
+    // 5. EXTERNAL LINK FUNCTIONS
     // =================================================================
-    // We attach these to the window object so the inline 'onclick'
-    // in the HTML can find them.
     window.openLink0 = function() { window.open("https://www.ekhartyoga.com/articles/browse_all", "_blank"); }
     window.openLink1 = function() { window.open("https://www.ekhartyoga.com/articles/wellbeing/how-to-be-your-authentic-self", "_blank"); }
     window.openLink2 = function() { window.open("https://www.ekhartyoga.com/articles/practice/sadhana-developing-a-sustainable-practice", "_blank"); }
@@ -111,95 +116,116 @@ document.addEventListener("DOMContentLoaded", function() {
     window.openLink4 = function() { window.open("https://www.ekhartyoga.com/articles/philosophy/what-is-hatha-yoga", "_blank"); }
 
     // =================================================================
-    // 5. FILTER FUNCTIONS (for Positions, Videos, Gallery, Coders)
+    // 6. UNIFIED FILTER SYSTEM
     // =================================================================
-    // We attach these to the window object so the inline 'onclick'
-    // in the HTML can find them.
-    
-    // Filter for Basic Positions (information.html)
-    window.filterImages = function(category) {
-        const cards = document.querySelectorAll('.position');
-        filterLogic(cards, category);
-    }
-    
-    // Filter for Videos (information.html)
-    window.filterVideos = function(category) {
-        const cards = document.querySelectorAll('.video');
-        filterLogic(cards, category);
-    }
-
-    // Filter for Gallery (gallery.html)
-    // Note: This function has the same name as the one for 'positions'.
-    // We will rename the filter function on the gallery page in the HTML
-    // to avoid conflicts. Let's assume gallery.html's buttons will
-    // call 'filterGallery'.
-    // *** We must update gallery.html to call 'filterGallery' ***
-    // (I will update this in the HTML file for gallery.html... but I see
-    // I already provided it. We'll fix this with the 'data-filter' method instead.)
-
-    // Filter for Coder Profiles (aboutus.html)
-    window.filterCoders = function(category) {
-        const cards = document.querySelectorAll('.coder-profile');
-        filterLogic(cards, category);
-    }
-
-    // Reusable filter logic
-    function filterLogic(cards, category) {
-        cards.forEach(card => {
-            if (category === 'all' || card.classList.contains(category)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-
-
-    // =================================================================
-    // 6. ACTIVE BUTTON TOGGLE LOGIC (for all filters)
-    // =================================================================
-    // This is a more modern, reusable way to handle your filter buttons
-    // It works by finding the button's parent container
-    
-    function setupFilterButtons(containerSelector, itemSelector) {
-        const buttonContainer = document.querySelector(containerSelector);
-        if (!buttonContainer) return; // Exit if the container isn't on this page
+    function setupFilterButtons(buttonContainerSelector, itemSelector) {
+        const buttonContainer = document.querySelector(buttonContainerSelector);
+        if (!buttonContainer) return;
 
         const buttons = buttonContainer.querySelectorAll('.btn');
-        const itemsToFilter = document.querySelectorAll(itemSelector);
+        const items = document.querySelectorAll(itemSelector);
 
         buttons.forEach(button => {
             button.addEventListener('click', function() {
-                // Handle active button state
+                // Update active button
                 buttons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
 
-                // Get the filter category from the 'data-filter' attribute
+                // Get filter value
                 const filter = this.getAttribute('data-filter');
                 
-                // Run the filter logic
-                itemsToFilter.forEach(item => {
+                // Filter items
+                items.forEach(item => {
                     if (filter === 'all' || item.classList.contains(filter)) {
-                        item.style.display = 'block'; // Or 'flex', 'grid', etc.
+                        item.style.display = '';
+                        // Re-trigger animation
+                        item.classList.remove('is-visible');
+                        setTimeout(() => item.classList.add('is-visible'), 10);
                     } else {
                         item.style.display = 'none';
                     }
                 });
             });
         });
-        
-        // Set the 'all' button as active by default
-        const allButton = buttonContainer.querySelector('.btn[data-filter="all"]');
-        if (allButton) {
-            allButton.classList.add('active');
-        }
     }
 
-    // Setup filters for each page
-    // (I've updated your HTML buttons to use `data-filter` attributes)
-    setupFilterButtons('.category-buttons', '.position'); // For information.html positions
-    setupFilterButtons('.video-buttons', '.video');        // For information.html videos
-    setupFilterButtons('.gallery-intro .category-buttons', '.image-card'); // For gallery.html
-    setupFilterButtons('.aboutus-intro .category-buttons', '.coder-profile'); // For aboutus.html (currently commented out)
+    // Setup filters for different pages
+    setupFilterButtons('.positions-section .filter-buttons', '.position-card');
+    setupFilterButtons('.videos-section .filter-buttons', '.video-card');
+    setupFilterButtons('.gallery-section .filter-buttons', '.gallery-item');
+    setupFilterButtons('.articles-section .filter-buttons', '.article-card');
+
+    // =================================================================
+    // 7. LAZY LOADING FOR IMAGES (Performance Optimization)
+    // =================================================================
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // =================================================================
+    // 8. SCROLL TO TOP BUTTON (Optional Enhancement)
+    // =================================================================
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.innerHTML = '↑';
+    scrollTopBtn.className = 'scroll-top-btn';
+    scrollTopBtn.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.5rem;
+        display: none;
+        z-index: 999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+    `;
+    
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollTopBtn.style.display = 'block';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    scrollTopBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1)';
+        this.style.backgroundColor = 'var(--color-primary-dark)';
+    });
+
+    scrollTopBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.backgroundColor = 'var(--color-primary)';
+    });
 
 });

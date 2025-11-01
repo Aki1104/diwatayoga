@@ -1,293 +1,359 @@
 /* =================================================================
-   HOME PAGE STYLES (home.css)
+   HOME PAGE STYLES (home.css) - REDESIGNED
    ================================================================= */
 
 /* =========== 1. Hero Section =========== */
-.background-image {
+.hero-section {
     position: relative;
-    /* UPDATED PATH: 'logo.jpg' is in 'assets/images/', 
-       and we are in the 'css/' folder, so we go up one ('../') */
-    background: url('../assets/images/logo.jpg') no-repeat center center/cover;
-    height: 90vh;
+    height: 100vh;
+    min-height: 600px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    overflow: hidden;
 }
 
-.glass-effect {
-    background: rgba(0, 0, 0, 0.5);
-    min-height: 50vh;
-    width: 80vw;
-    max-width: 900px; /* Added max-width */
-    border-radius: 15px; /* Softer corners */
-    padding: 30px;
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../assets/images/logo.jpg') no-repeat center center/cover;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(45, 95, 93, 0.9) 0%, rgba(31, 69, 68, 0.85) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
     text-align: center;
     color: var(--color-text-light);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 800px;
+    padding: var(--spacing-md);
 }
 
-.glass-effect h1 {
-    margin: 20px 0 10px 0;
-    font-size: 4em;
-    padding: 10px 0;
-    color: var(--color-light-card);
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-light);
+    letter-spacing: 2px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* Button style is now handled by .btn-primary in global.css */
-/* We keep this for spacing */
-.glass-effect form {
-    margin: 20px 0;
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+    line-height: 1.6;
 }
 
-.glass-effect h3 {
-    margin: 10px 0 0 0;
-    font-size: 2.5em;
-    padding: 10px 0;
-    color: var(--color-light-card);
+.hero-content .btn-primary {
+    font-size: 1.125rem;
+    padding: 1.25rem 3rem;
+    background-color: var(--color-accent);
+    color: var(--color-text-primary);
 }
 
-.glass-effect p {
-    font-size: 1.2em;
-    color: var(--color-light-card);
-    max-width: 600px;
-    margin: 10px auto 0; /* Center paragraph */
+.hero-content .btn-primary:hover {
+    background-color: var(--color-accent-light);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* =========== 2. "At a Glance" Cards Section =========== */
-.cards-section {
+/* =========== 2. Features Section =========== */
+.features-section {
+    background-color: var(--color-surface);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.feature-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
     text-align: center;
-    color: var(--color-dark-blue);
-    background-color: var(--color-light-card); /* White background */
+    transition: var(--transition-medium);
 }
 
-.cards-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    color: var(--color-dark-blue);
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
 }
 
-.card-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch; /* Makes all cards equal height */
-    flex-wrap: wrap;
-    gap: 30px; /* Responsive spacing */
-    margin-top: 20px;
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
 }
 
-.card {
-    background: var(--color-light-card);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Ensures image corners are rounded */
-    text-align: center;
-    width: 300px;
-    display: flex;
-    flex-direction: column; /* Stacks content vertically */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.feature-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
 }
 
-.card:hover {
-    transform: translateY(-10px); /* Lifts card on hover */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.feature-card p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
 }
 
-.card img {
+/* =========== 3. Showcase Section =========== */
+.showcase-section {
+    background: linear-gradient(to bottom, var(--color-surface), var(--color-background));
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.showcase-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
+}
+
+.showcase-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.showcase-image {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+}
+
+.showcase-image img {
     width: 100%;
-    height: 200px;
-    object-fit: cover; /* Prevents image stretching */
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
 }
 
-.card h2 {
-    font-size: 1.5em;
-    margin: 20px 15px 10px 15px;
-    color: var(--color-dark-blue);
+.showcase-card:hover .showcase-image img {
+    transform: scale(1.1);
 }
 
-.card p {
-    padding: 0 15px 20px 15px;
-    font-size: 1em;
-    color: var(--color-text-dark);
-    flex-grow: 1; /* Pushes content to bottom, making cards align */
-}
-
-/* =========== 3. Testimonials Section =========== */
-.testimonials-section {
-    padding: 50px 0;
-    text-align: center;
-    background-color: #D6E5E3; /* Kept original color */
-    color: var(--color-dark-blue);
-}
-
-.testimonials-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-}
-
-.testimonial-container {
+.showcase-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.8) 100%);
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-medium);
 }
 
-.testimonial {
-    background: var(--color-light-card);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 300px;
-    padding: 30px 20px;
-    transition: transform 0.3s ease;
+.showcase-card:hover .showcase-overlay {
+    opacity: 1;
 }
 
-.testimonial:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+.showcase-content {
+    padding: var(--spacing-md);
 }
 
-.testimonial p {
-    font-size: 1.2em;
-    color: var(--color-text-dark);
-    font-style: italic; /* Common for testimonials */
+.showcase-content h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.5rem;
 }
 
-.testimonial h3 {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: var(--color-green-primary);
+.showcase-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
 }
 
 /* =========== 4. Instructors Section =========== */
 .instructors-section {
-    text-align: center;
-    color: var(--color-dark-blue);
-    background-color: var(--color-light-bg); /* Page background color */
+    background-color: var(--color-surface);
 }
 
-.instructors-section h2 {
-    font-size: 2.5em;
-    margin-bottom: 40px;
+.instructor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
 }
 
-.instructor-container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch; /* Equal height */
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.instructor {
-    background: var(--color-light-card);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+.instructor-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    text-align: center;
-    width: 250px;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transition-medium);
 }
 
-.instructor:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+.instructor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
 }
 
-.instructor img {
-    width: 150px;
-    height: 150px;
+.instructor-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+}
+
+.instructor-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 50%; /* Makes image circular */
-    margin-bottom: 20px;
-    border: 4px solid var(--color-light-bg); /* Adds a nice border */
+    transition: var(--transition-slow);
 }
 
-.instructor h2 {
-    font-size: 1.5em;
-    margin: 15px 0;
-    color: var(--color-dark-blue);
+.instructor-card:hover .instructor-image img {
+    transform: scale(1.05);
 }
 
-.instructor p {
-    font-size: 1em;
-    color: var(--color-text-dark);
-}
-
-/* =========== 5. Contact Section (Footer) =========== */
-/* This is styled as a <footer> in the HTML */
-.contact-section {
-    padding: 60px 20px;
+.instructor-info {
+    padding: var(--spacing-md);
     text-align: center;
-    background-color: #D6E5E3;
-    color: var(--color-dark-blue);
 }
 
-.contact-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* Allows stacking on mobile */
-    gap: 40px;
+.instructor-info h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.5rem;
 }
 
-.contact-image-wrapper {
-    flex-basis: 500px; /* Base size */
-    flex-grow: 1; /* Allows it to grow */
-    max-width: 600px;
+.instructor-title {
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.contact-image {
-    width: 100%; 
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+.instructor-info p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    font-size: 0.95rem;
 }
 
-.contact-form-wrapper {
-    flex-basis: 400px; /* Base size */
-    flex-grow: 1; /* Allows it to grow */
-    max-width: 500px;
-    text-align: left;
+/* =========== 5. Testimonials Section =========== */
+.testimonials-section {
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+    color: var(--color-text-light);
 }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+.testimonials-section .section-header h2,
+.testimonials-section .section-header p {
+    color: var(--color-text-light);
 }
 
-.contact-form label {
-    font-size: 1.1em;
-    color: var(--color-text-dark);
-    margin-bottom: 8px;
-    font-weight: 500;
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
 }
 
-.contact-form input,
-.contact-form textarea {
-    width: 100%; 
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1em;
-    font-family: var(--font-primary);
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    transition: var(--transition-medium);
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--color-green-primary);
-    box-shadow: 0 0 5px var(--color-green-primary_soft);
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Button style is handled by .btn in global.css */
-.contact-form button {
-    width: 100%;
-    max-width: 200px;
+.testimonial-content {
+    margin-bottom: var(--spacing-md);
+}
+
+.quote-icon {
+    font-size: 3rem;
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+    font-family: Georgia, serif;
+}
+
+.testimonial-content p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.testimonial-author h4 {
+    color: var(--color-text-light);
+    margin-bottom: 0.25rem;
+    font-size: 1.125rem;
+}
+
+.testimonial-author p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* =========== 6. Responsive Design =========== */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+    
+    .hero-content .btn-primary {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .features-grid,
+    .showcase-grid,
+    .instructor-grid,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .showcase-image {
+        height: 250px;
+    }
+    
+    .instructor-image {
+        height: 280px;
+    }
 }

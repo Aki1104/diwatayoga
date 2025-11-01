@@ -1,148 +1,308 @@
 /* =================================================================
-   SEARCH PAGE STYLES (search.css)
+   SEARCH PAGE STYLES (search.css) - REDESIGNED
    ================================================================= */
 
-/* =========== 1. Search Intro Section =========== */
-.search-intro {
-    padding: 40px 20px;
-    background-color: var(--color-light-bg);
+/* =========== 1. Search Hero Section =========== */
+.search-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    color: var(--color-text-light);
+}
+
+.search-hero-content h1 {
+    font-size: 3rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.search-hero-content p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* =========== 2. Search Section =========== */
+.search-section {
+    background-color: var(--color-background);
+}
+
+.search-container {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.search-form {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: stretch;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.25rem;
+    color: var(--color-text-secondary);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1.125rem 1.25rem 1.125rem 3.5rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    transition: var(--transition-medium);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(45, 95, 93, 0.1);
+}
+
+.search-form .btn {
+    padding: 1.125rem 2.5rem;
+    white-space: nowrap;
+}
+
+/* =========== 3. Results Container =========== */
+.results-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.results-header {
+    margin-bottom: var(--spacing-lg);
     text-align: center;
 }
 
-.search-intro h1 {
-    font-size: 3em;
-    color: var(--color-dark-blue);
-    margin-bottom: 20px;
+.results-header h2 {
+    color: var(--color-primary);
+    font-size: 1.75rem;
 }
 
-.search-intro p {
-    font-size: 1.2em;
-    color: var(--color-text-dark);
-    margin-bottom: 30px;
+/* =========== 4. Poses Grid =========== */
+.poses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
 }
 
-/* Improved Search Bar */
-.search-bar {
-    margin-bottom: 20px;
-}
-
-.search-bar form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.search-bar input[type="text"] {
-    padding: 12px 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 400px;
-    font-size: 1rem;
-    font-family: var(--font-primary);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.search-bar input[type="text"]:focus {
-    outline: none;
-    border-color: var(--color-green-primary);
-    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
-}
-
-/* Button style is handled by .btn in global.css */
-
-
-/* =========== 2. Search Results Section =========== */
-/* This block of styles was moved from search.php <style> tag */
-.search-results-container {
-    background-color: var(--color-light-card); /* White background for results */
-    min-height: 50vh;
-}
-
-.search-results {
-    display: flex;
-    flex-direction: column; /* Stack results vertically */
-    align-items: center;
-    padding: 20px;
-    gap: 30px; /* Space between result cards */
-}
-
-/* Individual pose result card */
-.pose {
-    display: flex;
-    flex-wrap: wrap; /* Allows stacking on mobile */
-    align-items: flex-start; /* Align to top */
-    width: 100%;
-    max-width: 900px;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 15px;
-    background-color: var(--color-light-card);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    gap: 20px;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.pose:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-}
-
-.pose-image-link {
-    flex-basis: 300px; /* Base width */
-    flex-grow: 1;
+.pose-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-medium);
+    display: flex;
+    flex-direction: column;
 }
 
-.pose img {
+.pose-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pose-image-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+}
+
+.pose-image-container img {
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-    transition: transform 0.4s ease;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
 }
 
-.pose:hover img {
-    transform: scale(1.05);
+.pose-card:hover .pose-image-container img {
+    transform: scale(1.1);
 }
 
-/* Text details of the pose */
-.pose-details {
-    flex-basis: 400px; /* Base width */
-    flex-grow: 2; /* Takes up more space */
-}
-
-.pose h2 {
-    font-size: 1.8em;
-    color: var(--color-dark-blue);
-    margin-bottom: 15px;
-}
-
-.pose p {
+.pose-difficulty {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
-    text-align: left;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-sm);
+}
+
+.pose-difficulty.easy {
+    color: #10B981;
+}
+
+.pose-difficulty.intermediate {
+    color: #F59E0B;
+}
+
+.pose-difficulty.hard {
+    color: #EF4444;
+}
+
+.pose-content {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.pose-content h3 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.pose-description {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1;
+}
+
+.pose-benefits {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.pose-benefits h4 {
+    color: var(--color-primary);
     font-size: 1rem;
-    color: var(--color-text-dark);
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.pose-benefits p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
     line-height: 1.6;
 }
 
-.pose p strong {
-    color: var(--color-dark-blue);
-    font-weight: 500;
+/* =========== 5. No Results =========== */
+.no-results {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* "No results" message */
-.no-results {
-    font-size: 1.2em;
-    color: var(--color-text-dark);
-    padding: 40px;
-    text-align: center;
+.no-results-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
 }
+
+.no-results h3 {
+    color: var(--color-primary);
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.no-results p {
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-sm);
+}
+
+.no-results-tip {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
 .no-results.error {
-    color: #D8000C; /* Red for error */
-    background-color: #FFD2D2;
-    border: 1px solid #D8000C;
-    border-radius: 8px;
+    border: 2px solid #EF4444;
+}
+
+.no-results.error h3 {
+    color: #EF4444;
+}
+
+/* =========== 6. Search Suggestions =========== */
+.search-suggestions {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-suggestions h3 {
+    color: var(--color-primary);
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.suggestions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.suggestion-tag {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-background);
+    border: 2px solid var(--color-border);
+    border-radius: 25px;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition-medium);
+}
+
+.suggestion-tag:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* =========== 7. Responsive Design =========== */
+@media (max-width: 768px) {
+    .search-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .search-hero-content p {
+        font-size: 1.05rem;
+    }
+    
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form .btn {
+        width: 100%;
+    }
+    
+    .poses-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pose-image-container {
+        height: 220px;
+    }
 }

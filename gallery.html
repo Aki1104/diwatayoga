@@ -4,123 +4,191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Link to NEW global stylesheet -->
     <link rel="stylesheet" href="css/global.css">
-    <!-- Link to the page-specific stylesheet -->
     <link rel="stylesheet" href="css/gallery.css">
 
     <title>Gallery - Diwata Yoga</title>
 </head>
 <body>
 
-    <!-- =========== Header & Navigation Bar =========== -->
     <header class="sticky-nav">
         <nav class="sticky-nav-container">
-            <!-- Logo with link to home -->
             <div class="logo">
-                <a href="home.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
+                <a href="index.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
             </div>
-            <!-- Navigation Links -->
-            <ul>
-                <li><a href="home.html">HOME</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
                 <li><a href="information.html">INFORMATION</a></li>
                 <li><a href="search.php">SEARCH</a></li>
-                <!-- 'active' class highlights the current page -->
                 <li><a href="gallery.html" class="active">GALLERY</a></li>
                 <li><a href="aboutus.html">ABOUT US</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- =========== Main Content =========== -->
     <main>
 
-        <!-- =========== Gallery Intro & Filters =========== -->
-        <section class="gallery-intro fade-in">
-            <h1 class="gi-header">Gallery</h1>
-            <p>Explore our gallery featuring mesmerizing images from our yoga sessions and events.</p>
-            <!-- Category filter buttons. These call the 'filterImages' JavaScript function. -->
-            <div class="category-buttons">
-                <button class="btn" data-filter="all">All</button>
+        <section class="gallery-hero">
+            <div class="gallery-hero-content fade-in">
+                <h1>Gallery</h1>
+                <p>Explore mesmerizing images from our yoga sessions and community</p>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="filter-buttons fade-in-up">
+                <button class="btn active" data-filter="all">All</button>
                 <button class="btn" data-filter="yogapost">Yoga Posts</button>
                 <button class="btn" data-filter="yogagroups">Yoga Groups</button>
                 <button class="btn" data-filter="instructors">Instructors</button>
                 <button class="btn" data-filter="position">Positions</button>
             </div>
-        </section>
-
-        <!-- =========== Image Cards Container =========== -->
-        <section class="image-cards">
             
-            <!-- Each card has a class corresponding to the filter buttons (e.g., 'yogapost') -->
-            <!-- This is used by the 'filterImages' JavaScript function -->
-
-            <!-- --- Yoga Post Images --- -->
-            <article class="image-card yogapost fade-in-up">
-                <a href="assets/images/pose_camatkarasana.jpg" target="_blank"><img src="assets/images/pose_camatkarasana.jpg" alt="Camatkarasana Photo"></a>
-                <h2>Camatkarasana</h2>
-            </article>
-            <article class="image-card yogapost fade-in-up">
-                <a href="assets/images/pose_warriorI.jpg" target="_blank"><img src="assets/images/pose_warriorI.jpg" alt="Warrior I Photo"></a>
-                <h2>Warrior I </h2>
-            </article>
-            <article class="image-card yogapost fade-in-up">
-                <a href="assets/images/pose_marichyasana_c.jpg" target="_blank"><img src="assets/images/pose_marichyasana_c.jpg" alt="Marichyasana C Photo"></a>
-                <h2>Marichyasana C</h2>
-            </article>
-            <article class="image-card yogapost fade-in-up">
-                <a href="assets/images/pose_warriorIII.jpg" target="_blank"><img src="assets/images/pose_warriorIII.jpg" alt="Warrior III Photo"></a>
-                <h2>Warrior III</h2>
-            </article>
-            <article class="image-card yogapost fade-in-up">
-                <a href="assets/images/pose_skandasana.jpg" target="_blank"><img src="assets/images/pose_skandasana.jpg" alt="Skandasana Photo"></a>
-                <h2>Skandasana</h2>
-            </article>
-
-            <!-- --- Yoga Group Images --- -->
-            <article class="image-card yogagroups fade-in-up">
-                <a href="assets/images/yogagroup1.jpg" target="_blank"><img src="assets/images/yogagroup1.jpg" alt="Yoga Group 1"></a>
-                <h2>Yoga Group 1</h2>
-            </article>
-            <article class="image-card yogagroups fade-in-up">
-                <a href="assets/images/yogagroup2.jpeg" target="_blank"><img src="assets/images/yogagroup2.jpeg" alt="Yoga Group 2"></a>
-                <h2>Yoga Group 2</h2>
-            </article>
-
-            <!-- --- Instructor Images --- -->
-            <article class="image-card instructors fade-in-up">
-                <a href="assets/images/instructor_esther_ekhart.jpg" target="_blank"><img src="assets/images/instructor_esther_ekhart.jpg" alt="Esther Ekhart's Photo"></a>
-                <h2>Esther Ekhart</h2>
-            </article>
-            <article class="image-card instructors fade-in-up">
-                <a href="assets/images/instructor_david_lurey.jpg" target="_blank"><img src="assets/images/instructor_david_lurey.jpg" alt="David Lurey's Photo"></a>
-                <h2>David Lurey</h2>
-            </article>
-            <article class="image-card instructors fade-in-up">
-                <a href="assets/images/instructor_julie_martin.jpg" target="_blank"><img src="assets/images/instructor_julie_martin.jpg" alt="Julie Martin's Photo"></a>
-                <h2>Julie Martin</h2>
-            </article>
-            <article class="image-card instructors fade-in-up">
-                <a href="assets/images/instructor_david_kam.jpg" target="_blank"><img src="assets/images/instructor_david_kam.jpg" alt="David Kam's Photo"></a>
-                <h2>David Kam</h2>
-            </article>
-            
-            <!-- --- Position Thumbnail Images --- -->
-            <article class="image-card position fade-in-up">
-                <a href="assets/images/position_mountain_pose.webp" target="_blank"><img src="assets/images/position_mountain_pose.webp" alt="Mountain Pose"></a>
-                <h2>Mountain Pose</h2>
-            </article>
-            <!-- ... (all other position images) ... -->
-            <article class="image-card position fade-in-up">
-                <a href="assets/images/position_half_forward_bend.webp" target="_blank"><img src="assets/images/position_half_forward_bend.webp" alt="Half Forward Bend"></a>
-                <h2>Half Forward Bend</h2>
-            </article>
+            <div class="gallery-grid">
+                <article class="gallery-item yogapost fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/pose_camatkarasana.jpg" alt="Camatkarasana">
+                        <div class="gallery-overlay">
+                            <h3>Camatkarasana</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item yogapost fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/pose_warriorI.jpg" alt="Warrior I">
+                        <div class="gallery-overlay">
+                            <h3>Warrior I</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item yogapost fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/pose_marichyasana_c.jpg" alt="Marichyasana C">
+                        <div class="gallery-overlay">
+                            <h3>Marichyasana C</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item yogapost fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/pose_warriorIII.jpg" alt="Warrior III">
+                        <div class="gallery-overlay">
+                            <h3>Warrior III</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item yogapost fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/pose_skandasana.jpg" alt="Skandasana">
+                        <div class="gallery-overlay">
+                            <h3>Skandasana</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item yogagroups fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/yogagroup1.jpg" alt="Yoga Group 1">
+                        <div class="gallery-overlay">
+                            <h3>Yoga Group 1</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item yogagroups fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/yogagroup2.jpeg" alt="Yoga Group 2">
+                        <div class="gallery-overlay">
+                            <h3>Yoga Group 2</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item instructors fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/instructor_esther_ekhart.jpg" alt="Esther Ekhart">
+                        <div class="gallery-overlay">
+                            <h3>Esther Ekhart</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item instructors fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/instructor_david_lurey.jpg" alt="David Lurey">
+                        <div class="gallery-overlay">
+                            <h3>David Lurey</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item instructors fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/instructor_julie_martin.jpg" alt="Julie Martin">
+                        <div class="gallery-overlay">
+                            <h3>Julie Martin</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item instructors fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/instructor_david_kam.jpg" alt="David Kam">
+                        <div class="gallery-overlay">
+                            <h3>David Kam</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item position fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/position_mountain_pose.webp" alt="Mountain Pose">
+                        <div class="gallery-overlay">
+                            <h3>Mountain Pose</h3>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="gallery-item position fade-in-up">
+                    <div class="gallery-image">
+                        <img src="assets/images/position_half_forward_bend.webp" alt="Half Forward Bend">
+                        <div class="gallery-overlay">
+                            <h3>Half Forward Bend</h3>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
     </main>
 
-    <!-- =========== JavaScript =========== -->
-    <!-- All JavaScript is now linked from an external file -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo" class="footer-logo">
+                <p>Experience tranquility and peace through mindful yoga practice.</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Get in Touch</h3>
+                <form id="contactForm" class="contact-form">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Diwata Yoga. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
 
 </body>

@@ -4,27 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Link to NEW global stylesheet -->
     <link rel="stylesheet" href="css/global.css">
-    <!-- Link to the page-specific stylesheet -->
     <link rel="stylesheet" href="css/search.css">
 
     <title>Search - Diwata Yoga</title>
 </head>
 <body>
 
-    <!-- =========== Header & Navigation Bar =========== -->
     <header class="sticky-nav">
         <nav class="sticky-nav-container">
-            <!-- Logo with link to home -->
             <div class="logo">
-                <a href="home.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
+                <a href="index.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
             </div>
-            <!-- Navigation Links -->
-            <ul>
-                <li><a href="home.html">HOME</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
                 <li><a href="information.html">INFORMATION</a></li>
-                <!-- 'active' class highlights the current page -->
                 <li><a href="search.php" class="active">SEARCH</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
                 <li><a href="aboutus.html">ABOUT US</a></li>
@@ -32,86 +26,136 @@
         </nav>
     </header>
 
-    <!-- =========== Main Content =========== -->
     <main>
 
-        <!-- =========== Search Intro & Form =========== -->
-        <section class="search-intro fade-in">
-            <h1 class="si-header">Search</h1>
-            <p>Discover the Essence: Search Through Our Yoga Sessions and Events.</p>
-            <div class="search-bar">
-                <!-- This form submits back to this same page (search.php) using the GET method -->
-                <form action="search.php" method="GET">
-                    <input type="text" name="search" placeholder="Search for yoga poses..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                    <button type="submit" class="btn">Search</button>
-                </form>
+        <section class="search-hero">
+            <div class="search-hero-content fade-in">
+                <h1>Discover Your Practice</h1>
+                <p>Search through our comprehensive library of yoga poses</p>
             </div>
         </section>
 
-        <!-- =========== Search Results =========== -->
-        <section class="search-results-container">
-            <div class="search-results">
+        <section class="search-section">
+            <div class="search-container fade-in-up">
+                <form action="search.php" method="GET" class="search-form">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input 
+                            type="text" 
+                            name="search" 
+                            placeholder="Search for yoga poses..." 
+                            value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>"
+                            class="search-input"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
+            <div class="results-container">
                 <?php
-                // Check if the 'search' parameter is set in the URL (i.e., if the form was submitted)
                 if (isset($_GET['search'])) {
-                    
-                    // Sanitize the search query to prevent issues
                     $query = strtolower(trim($_GET['search']));
-                    
-                    // Define the path to the XML file
                     $xmlFilePath = 'assets/data/poses.xml';
 
                     if (file_exists($xmlFilePath) && !empty($query)) {
-                        // Load the XML file
                         $xml = simplexml_load_file($xmlFilePath);
-                        $results = []; // Array to hold matching poses
+                        $results = [];
 
-                        // Loop through each '<pose>' tag in the XML
                         foreach ($xml->pose as $pose) {
-                            // Check if the query string is found anywhere in the pose's name
                             if (strpos(strtolower($pose->name), $query) !== false) {
-                                $results[] = $pose; // Add the matching pose to the $results array
+                                $results[] = $pose;
                             }
                         }
 
-                        // Check if we found any results
                         if (count($results) > 0) {
-                            // Loop through the results and display them as HTML
-                            foreach ($results as $pose) {
-                                // Construct the correct image path
+                            echo '<div class="results-header fade-in-up">';
+                            echo '<h2>Found ' . count($results) . ' result' . (count($results) > 1 ? 's' : '') . ' for "' . htmlspecialchars($query) . '"</h2>';
+                            echo '</div>';
+                            
+                            echo '<div class="poses-grid">';
+                            foreach ($results as $index => $pose) {
                                 $imagePath = 'assets/images/' . htmlspecialchars($pose->image);
+                                $delay = ($index % 3) * 0.1;
                                 
-                                // Display the result as an <article>
-                                echo '<article class="pose fade-in-up">';
-                                echo '  <a href="' . $imagePath . '" target="_blank" class="pose-image-link">';
+                                echo '<article class="pose-card fade-in-up" style="--delay: ' . $delay . 's;">';
+                                echo '  <div class="pose-image-container">';
                                 echo '    <img src="' . $imagePath . '" alt="' . htmlspecialchars($pose->name) . '">';
-                                echo '  </a>';
-                                echo '  <div class="pose-details">';
-                                echo '    <h2>' . htmlspecialchars($pose->name) . '</h2>';
-                                echo '    <p><strong>Description:</strong> ' . htmlspecialchars($pose->description) . '</p>';
-                                echo '    <p><strong>Benefits:</strong> ' . htmlspecialchars($pose->benefits) . '</p>';
-                                echo '    <p><strong>Difficulty:</strong> ' . htmlspecialchars($pose->difficulty) . '</p>';
+                                echo '    <div class="pose-difficulty ' . strtolower($pose->difficulty) . '">';
+                                echo '      ' . htmlspecialchars($pose->difficulty);
+                                echo '    </div>';
+                                echo '  </div>';
+                                echo '  <div class="pose-content">';
+                                echo '    <h3>' . htmlspecialchars($pose->name) . '</h3>';
+                                echo '    <p class="pose-description">' . htmlspecialchars($pose->description) . '</p>';
+                                echo '    <div class="pose-benefits">';
+                                echo '      <h4>Benefits</h4>';
+                                echo '      <p>' . htmlspecialchars($pose->benefits) . '</p>';
+                                echo '    </div>';
                                 echo '  </div>';
                                 echo '</article>';
                             }
+                            echo '</div>';
                         } else {
-                            // Display a "no results" message if the array is empty
-                            echo '<p class="no-results fade-in">No results found for "<strong>' . htmlspecialchars($query) . '</strong>".</p>';
+                            echo '<div class="no-results fade-in">';
+                            echo '  <div class="no-results-icon">🔍</div>';
+                            echo '  <h3>No results found</h3>';
+                            echo '  <p>We couldn\'t find any poses matching "<strong>' . htmlspecialchars($query) . '</strong>"</p>';
+                            echo '  <p class="no-results-tip">Try searching for common poses like "mountain", "warrior", or "downward"</p>';
+                            echo '</div>';
                         }
                     } elseif (!empty($query)) {
-                        // Display an error if the XML file is missing
-                        echo '<p class="no-results error fade-in">Error: Could not load data file.</p>';
+                        echo '<div class="no-results error fade-in">';
+                        echo '  <div class="no-results-icon">⚠️</div>';
+                        echo '  <h3>Error</h3>';
+                        echo '  <p>Could not load pose database. Please try again later.</p>';
+                        echo '</div>';
                     }
-                    // If the query is empty, nothing will be displayed (no 'else' needed)
+                } else {
+                    echo '<div class="search-suggestions fade-in-up">';
+                    echo '  <h3>Popular Searches</h3>';
+                    echo '  <div class="suggestions-grid">';
+                    echo '    <a href="search.php?search=mountain" class="suggestion-tag">Mountain Pose</a>';
+                    echo '    <a href="search.php?search=warrior" class="suggestion-tag">Warrior Poses</a>';
+                    echo '    <a href="search.php?search=downward" class="suggestion-tag">Downward Dog</a>';
+                    echo '    <a href="search.php?search=tree" class="suggestion-tag">Tree Pose</a>';
+                    echo '    <a href="search.php?search=child" class="suggestion-tag">Child\'s Pose</a>';
+                    echo '    <a href="search.php?search=cobra" class="suggestion-tag">Cobra Pose</a>';
+                    echo '  </div>';
+                    echo '</div>';
                 }
                 ?>
             </div>
         </section>
-    
+
     </main>
 
-    <!-- =========== JavaScript =========== -->
-    <!-- All JavaScript is now linked from an external file -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo" class="footer-logo">
+                <p>Experience tranquility and peace through mindful yoga practice.</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Get in Touch</h3>
+                <form id="contactForm" class="contact-form">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Diwata Yoga. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
 
 </body>

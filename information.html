@@ -4,26 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Link to NEW global stylesheet -->
     <link rel="stylesheet" href="css/global.css">
-    <!-- Link to the page-specific stylesheet -->
     <link rel="stylesheet" href="css/information.css">
 
-    <title>Info - Diwata Yoga</title>
+    <title>Information - Diwata Yoga</title>
 </head>
 <body>
 
-    <!-- =========== Header & Navigation Bar =========== -->
     <header class="sticky-nav">
         <nav class="sticky-nav-container">
-            <!-- Logo with link to home -->
             <div class="logo">
-                <a href="home.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
+                <a href="index.html"><img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo"></a>
             </div>
-            <!-- Navigation Links -->
-            <ul>
-                <li><a href="home.html">HOME</a></li>
-                <!-- 'active' class highlights the current page -->
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
                 <li><a href="information.html" class="active">INFORMATION</a></li>
                 <li><a href="search.php">SEARCH</a></li>
                 <li><a href="gallery.html">GALLERY</a></li>
@@ -32,207 +26,223 @@
         </nav>
     </header>
 
-    <!-- =========== Main Content =========== -->
     <main>
 
-        <!-- =========== Hero Section =========== -->
-        <section class="background-image">
-            <div class="glass-effect fade-in">
-                <h1>COLLECT. BREATH. TRANSFORM.</h1>
+        <section class="info-hero">
+            <div class="info-hero-content fade-in">
+                <h1>COLLECT. BREATHE. TRANSFORM.</h1>
+                <p>Discover the depths of yoga practice</p>
             </div>
         </section>
 
-
-        <!-- =========== Main Content Area (Two Columns) =========== -->
         <section class="main-content">
-            <!-- Left Column: "What is Diwata Yoga" -->
-            <!-- Added 'slide-in-left' animation class -->
-            <div class="left-side slide-in-left">
-                <div class="image-container">
-                    <a href="assets/images/logo2.jpg" target="_blank"><img src="assets/images/logo2.jpg" alt="Yoga pose at sunset"></a>
-                </div>
-                <div class="text-container-left">
-                    <h2>What is Diwata Yoga</h2>
-                    <p>
-                        Diwata Yoga is not just your average online yoga hub...
-                    </p>
-                    <h4>More Than Just Asanas</h4>
-                    <p>
-                        But what sets Diwata Yoga apart from the myriad of other yoga platforms?...
-                    </p>
-                    <h4>Rich Tapestry of Content</h4>
-                    <p>
-                        At its core, Diwata Yoga is a celebration of the divine within us all...
-                    </p>
-                    <!-- ... (other text paragraphs) ... -->
-                    <p>
-                        <br>
-                        Read articles on yoga practice, meditation, wellbeing, recipes, yoga anatomy and philosophy to 
-                        guide you through every stage of your practice.
-                    </p>
-                    <!-- This button uses JavaScript (openLink0) to open an external site -->
-                    <button class="btn" onclick="openLink0()">Read More Articles ‣</button>
-                </div>
-            </div>
-            
-            <!-- Right Column: "Learn Positions" & "Beginner Videos" -->
-            <!-- Added 'slide-in-right' animation class -->
-            <div class="right-side slide-in-right">
-                <!-- Top-right card -->
-                <div class="top-right">
-                    <div class="image-container">
-                        <a href="assets/images/logo_downward_dog.webp" target="_blank"><img src="assets/images/logo_downward_dog.webp" alt="Downward Dog Pose Photo"></a>
-                    </div>
-                    <div class="text-container">
-                        <h2>Learn Basic Positions</h2>
-                        <p>
-                            Dive into the essence of yoga with our Learn Basic Positions series...
-                        </p>
-                        <!-- This button uses JavaScript (scrollPosition) to scroll down the page -->
-                        <button id="scrollPosition" class="btn">Learn More ‣</button>
-                    </div>
-                </div>
+            <div class="content-grid">
                 
-                <!-- Bottom-right card -->
-                <div class="bottom-right">
-                    <div class="videotop-container">
-                        <!-- Embedded YouTube video -->
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/149Iac5fmoE?si=xgCTEiZ5-YGl4pDX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <article class="content-large slide-in-left">
+                    <div class="content-image">
+                        <img src="assets/images/logo2.jpg" alt="Yoga Meditation">
                     </div>
-                    <div class="text-container">
-                        <h2>Videos for Beginners</h2>
-                        <p>
-                            Dive into yoga with our beginner-friendly videos...
-                        </p>
-                        <!-- This button uses JavaScript (scrollVideo) to scroll down the page -->
-                        <button id="scrollVideo" class="btn">Watch More ‣</button>
+                    <div class="content-text">
+                        <h2>What is Diwata Yoga</h2>
+                        <p>Diwata Yoga is not just your average online yoga hub. It's a sanctuary where ancient wisdom meets modern convenience, providing a space for seekers of all levels to deepen their practice.</p>
+                        
+                        <h3>More Than Just Asanas</h3>
+                        <p>What sets Diwata Yoga apart is our holistic approach. We don't just teach poses; we guide you through a transformative journey that encompasses body, mind, and spirit.</p>
+                        
+                        <h3>Rich Tapestry of Content</h3>
+                        <p>At its core, Diwata Yoga celebrates the divine within us all. From foundational poses to advanced sequences, meditation guides to philosophy articles, we offer everything you need for a complete practice.</p>
+                        
+                        <button class="btn btn-primary" onclick="openLink0()">Read More Articles →</button>
                     </div>
+                </article>
+                
+                <div class="content-sidebar">
+                    <article class="content-small slide-in-right">
+                        <div class="content-image">
+                            <img src="assets/images/logo_downward_dog.webp" alt="Downward Dog">
+                        </div>
+                        <div class="content-text">
+                            <h2>Learn Basic Positions</h2>
+                            <p>Master fundamental yoga poses with detailed instructions, benefits, and modifications for all levels.</p>
+                            <button class="btn btn-secondary" id="scrollPosition">Learn More →</button>
+                        </div>
+                    </article>
+                    
+                    <article class="content-small slide-in-right">
+                        <div class="video-embed">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/149Iac5fmoE?si=xgCTEiZ5-YGl4pDX" title="Yoga Tutorial" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div class="content-text">
+                            <h2>Videos for Beginners</h2>
+                            <p>Follow along with expertly guided video sessions designed for those new to yoga practice.</p>
+                            <button class="btn btn-secondary" id="scrollVideo">Watch More →</button>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- =========== Articles Section =========== -->
         <section class="articles-section">
-            <h2 class="as-header fade-in-up">Articles</h2>
-            <div class="article-container">
-                <!-- Article 1 -->
-                <article class="article fade-in-up" style="--delay: 0s;">
-                    <a href="assets/images/article_in_search_of_authenticity.jpg" target="_blank"><img src="assets/images/article_in_search_of_authenticity.jpg" alt="In Search of Authenticity Article Photo"></a>
-                    <h2>In Search of Authenticity</h2>
-                    <p>How we can learn to be our authentic selves when we're not sure who that 'self' is?</p>
-                    <h4>by Jo Matthews</h4>
-                    <!-- Calls JavaScript function 'openLink1' -->
-                    <button class="btn" onclick="openLink1()">Read Me ‣</button>
-                </article>
-                <!-- Article 2 -->
-                <article class="article fade-in-up" style="--delay: 0.1s;">
-                    <a href="assets/images/article_sadhana.jpeg" target="_blank"><img src="assets/images/article_sadhana.jpeg" alt="Sādhana Article Photo"></a>
-                    <h2>Sādhana</h2>
-                    <p>Sadhana is the regular, systematic effort to cultivate and refine your mind, body, and soul our life?</p>
-                    <h4>by Laia Bové</h4>
-                    <button class="btn" onclick="openLink2()">Read Me ‣</button>
-                </article>
-                <!-- Article 3 -->
-                <article class="article fade-in-up" style="--delay: 0.2s;">
-                    <a href="assets/images/article_tips_for_beginner_yogis.jpg" target="_blank"><img src="assets/images/article_tips_for_beginner_yogis.jpg" alt="Tips for Beginner Yogis Article Photo"></a>
-                    <h2>Tips for Beginner Yogis</h2>
-                    <p>If you're new to yoga, read our top ten tips for beginners and get your practice off to the best start.</p>
-                    <h4>by Emma Newlyn</h4>
-                    <button class="btn" onclick="openLink3()">Read Me ‣</button>
-                </article>
-                <!-- Article 4 -->
-                <article class="article fade-in-up" style="--delay: 0.3s;">
-                    <a href="assets/images/article_what_is_hatha_yoga.jpg" target="_blank"><img src="assets/images/article_what_is_hatha_yoga.jpg" alt="What is Hatha Yoga? Article Photo"></a>
-                    <h2>What is Hatha Yoga?</h2>
-                    <p>A fascinating tour through the history, evolution and practices of physical yoga.</p>
-                    <h4>by Emma Newlyn</h4>
-                    <button class="btn" onclick="openLink4()">Read Me ‣</button>
-                </article>
-            </div>
-        </section>
-
-
-        <!-- =========== Basic Positions Section =========== -->
-        <!-- The ID "scrollPositionTarget" is the destination for the "Learn More" scroll button -->
-        <section class="basic-positions-section" id="scrollPositionTarget">
-            <h2 class="bps-header fade-in-up">Positions in Yoga</h2>
-            <p class="fade-in-up">
-                Here, you can browse positions in yoga, gaining insight into the fundamental asanas...
-            </p>
-            <!-- Category filter buttons. These call the 'filterImages' JavaScript function. -->
-            <div class="category-buttons fade-in-up">
-                <button class="btn" data-filter="all">All</button>
-                <button class="btn" data-filter="easy">EASY</button>
-                <button class="btn" data-filter="intermediate">INTERMEDIATE</button>
-                <button class="btn" data-filter="hard">HARD</button>
+            <div class="section-header fade-in-up">
+                <h2>Featured Articles</h2>
+                <p>Deepen your understanding of yoga philosophy and practice</p>
             </div>
             
-            <div class="basic-positions-container">
-                <!-- Each position card has a class for its difficulty (e.g., 'easy', 'intermediate') -->
-                <!-- This is used by the 'filterImages' JavaScript function to show/hide it -->
-                <article class="position easy fade-in-up">
-                    <a href="assets/images/position_mountain_pose.webp" target="_blank"><img src="assets/images/position_mountain_pose.webp" alt="Mountain Pose"></a>
-                    <h2>Mountain Pose</h2>
-                    <p>A foundational pose that improves posture, balance, and calm focus.</p>
-                    <h4>EASY</h4>
+            <div class="articles-grid">
+                <article class="article-card fade-in-up" style="--delay: 0s;">
+                    <div class="article-image">
+                        <img src="assets/images/article_in_search_of_authenticity.jpg" alt="Authenticity Article">
+                    </div>
+                    <div class="article-content">
+                        <h3>In Search of Authenticity</h3>
+                        <p class="article-author">by Jo Matthews</p>
+                        <p>How we can learn to be our authentic selves when we're not sure who that 'self' is?</p>
+                        <button class="btn btn-secondary" onclick="openLink1()">Read Article →</button>
+                    </div>
                 </article>
-                <!-- ... (all other position cards) ... -->
-                <article class="position hard fade-in-up">
-                    <a href="assets/images/position_half_forward_bend.webp" target="_blank"><img src="assets/images/position_half_forward_bend.webp" alt="Half Forward Bend"></a>
-                    <h2>Half Forward Bend</h2>
-                    <p>This flat-back forward bend is most often done as part of a sun salutation sequence.</p>
-                    <h4>HARD</h4>
+                
+                <article class="article-card fade-in-up" style="--delay: 0.1s;">
+                    <div class="article-image">
+                        <img src="assets/images/article_sadhana.jpeg" alt="Sadhana Article">
+                    </div>
+                    <div class="article-content">
+                        <h3>Sādhana</h3>
+                        <p class="article-author">by Laia Bové</p>
+                        <p>Sadhana is the regular, systematic effort to cultivate and refine your mind, body, and soul.</p>
+                        <button class="btn btn-secondary" onclick="openLink2()">Read Article →</button>
+                    </div>
                 </article>
-            </div>            
+                
+                <article class="article-card fade-in-up" style="--delay: 0.2s;">
+                    <div class="article-image">
+                        <img src="assets/images/article_tips_for_beginner_yogis.jpg" alt="Beginner Tips">
+                    </div>
+                    <div class="article-content">
+                        <h3>Tips for Beginner Yogis</h3>
+                        <p class="article-author">by Emma Newlyn</p>
+                        <p>Get your practice off to the best start with our essential tips for yoga beginners.</p>
+                        <button class="btn btn-secondary" onclick="openLink3()">Read Article →</button>
+                    </div>
+                </article>
+                
+                <article class="article-card fade-in-up" style="--delay: 0.3s;">
+                    <div class="article-image">
+                        <img src="assets/images/article_what_is_hatha_yoga.jpg" alt="Hatha Yoga">
+                    </div>
+                    <div class="article-content">
+                        <h3>What is Hatha Yoga?</h3>
+                        <p class="article-author">by Emma Newlyn</p>
+                        <p>A fascinating tour through the history, evolution and practices of physical yoga.</p>
+                        <button class="btn btn-secondary" onclick="openLink4()">Read Article →</button>
+                    </div>
+                </article>
+            </div>
         </section>
 
+        <section class="positions-section" id="scrollPositionTarget">
+            <div class="section-header fade-in-up">
+                <h2>Yoga Positions</h2>
+                <p>Browse and master fundamental asanas</p>
+            </div>
+            
+            <div class="filter-buttons fade-in-up">
+                <button class="btn active" data-filter="all">All</button>
+                <button class="btn" data-filter="easy">Easy</button>
+                <button class="btn" data-filter="intermediate">Intermediate</button>
+                <button class="btn" data-filter="hard">Hard</button>
+            </div>
+            
+            <div class="positions-grid">
+                <article class="position-card easy fade-in-up">
+                    <div class="position-image">
+                        <img src="assets/images/position_mountain_pose.webp" alt="Mountain Pose">
+                        <span class="difficulty-badge easy">Easy</span>
+                    </div>
+                    <div class="position-content">
+                        <h3>Mountain Pose</h3>
+                        <p>A foundational pose that improves posture, balance, and calm focus.</p>
+                    </div>
+                </article>
+                
+                <article class="position-card easy fade-in-up">
+                    <div class="position-image">
+                        <img src="assets/images/position_half_forward_bend.webp" alt="Half Forward Bend">
+                        <span class="difficulty-badge easy">Easy</span>
+                    </div>
+                    <div class="position-content">
+                        <h3>Half Forward Bend</h3>
+                        <p>This flat-back forward bend is most often done as part of a sun salutation sequence.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-        <!-- =========== Videos Section =========== -->
-        <!-- The ID "scrollVideoTarget" is the destination for the "Watch More" scroll button -->
-        <section class="video-section" id="scrollVideoTarget">
-            <h2 class="vs-header fade-in-up">Tutorials in Yoga</h2>
-            <p class="fade-in-up">
-                Welcome to our comprehensive yoga tutorial series...
-            </p>
-
-            <!-- Video filter buttons. These call the 'filterVideos' JavaScript function. -->
-            <div class="video-buttons fade-in-up">
-                <button class="btn" data-filter="all">All</button>
-                <button class="btn" data-filter="easy">EASY</button>
-                <button class="btn" data-filter="intermediate">INTERMEDIATE</button>
-                <button class="btn" data-filter="hard">HARD</button>
-                <button class="btn" data-filter="15">15 Minutes</button>
-                <button class="btn" data-filter="30">30 Minutes</button>
+        <section class="videos-section" id="scrollVideoTarget">
+            <div class="section-header fade-in-up">
+                <h2>Video Tutorials</h2>
+                <p>Practice with guided video sessions</p>
+            </div>
+            
+            <div class="filter-buttons fade-in-up">
+                <button class="btn active" data-filter="all">All</button>
+                <button class="btn" data-filter="easy">Easy</button>
+                <button class="btn" data-filter="intermediate">Intermediate</button>
+                <button class="btn" data-filter="hard">Hard</button>
+                <button class="btn" data-filter="15">15 Min</button>
+                <button class="btn" data-filter="30">30 Min</button>
                 <button class="btn" data-filter="1">1 Hour</button>
             </div>
             
-            <div class="video-container">
-                <!-- Each video card has classes for difficulty AND time (e.g., 'easy', '15') -->
-                <!-- This allows the 'filterVideos' function to filter by multiple criteria -->
-                <article class="video easy 15 fade-in-up">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/149Iac5fmoE?si=xZOuIbU7Y8yoegPa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h2>Basic YOGA ASANAS </h2>
-                    <p>
-                        Some easy basic beginners yoga asanas to practice at home...
-                    </p>
-                    <h4>SCImplify</h4>
+            <div class="videos-grid">
+                <article class="video-card easy 15 fade-in-up">
+                    <div class="video-embed">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/149Iac5fmoE?si=xZOuIbU7Y8yoegPa" title="Yoga Tutorial" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Basic Yoga Asanas</h3>
+                        <p class="video-author">SCImplify</p>
+                        <p>Some easy basic beginners yoga asanas to practice at home.</p>
+                    </div>
                 </article>
-                <!-- ... (all other video cards) ... -->
-                <article class="video intermediate hard 30 fade-in-up">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/tnZ96Y2C28Y?si=eKguZk5HfdewwAsj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <h2>Deep Stretching Routine</h2>
-                    <p>
-                        The routine is thoughtfully structured and all of the exercises flow seamlessly...
-                    </p>
-                    <h4>Mady Morrison</h4>
+                
+                <article class="video-card intermediate 30 fade-in-up">
+                    <div class="video-embed">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/tnZ96Y2C28Y?si=eKguZk5HfdewwAsj" title="Deep Stretching" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-content">
+                        <h3>Deep Stretching Routine</h3>
+                        <p class="video-author">Mady Morrison</p>
+                        <p>A thoughtfully structured routine with seamlessly flowing exercises.</p>
+                    </div>
                 </article>
-            </div>            
+            </div>
         </section>
 
     </main>
 
-    <!-- =========== JavaScript =========== -->
-    <!-- All JavaScript is now linked from an external file -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="assets/images/logo_diwata_yoga.png" alt="Diwata Yoga Logo" class="footer-logo">
+                <p>Experience tranquility and peace through mindful yoga practice.</p>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Get in Touch</h3>
+                <form id="contactForm" class="contact-form">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Diwata Yoga. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
 
 </body>
