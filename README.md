@@ -44,8 +44,9 @@ A beautiful, responsive yoga website built with modern web technologies to provi
 
 ## 📁 Project Structure
 
+```
 diwata-yoga/
-├── index.html          # Home page
+├── index.html          # Home page 
 ├── information.html    # Information & resources
 ├── search.html         # Search functionality
 ├── gallery.html        # Image gallery
@@ -71,7 +72,7 @@ diwata-yoga/
         ├── position_*.webp
         ├── instructor_*.jpg
         └── ...
-
+```
 
 ## 🚀 Quick Start
 
