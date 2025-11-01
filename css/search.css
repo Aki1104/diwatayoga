@@ -1,0 +1,148 @@
+/* =================================================================
+   SEARCH PAGE STYLES (search.css)
+   ================================================================= */
+
+/* =========== 1. Search Intro Section =========== */
+.search-intro {
+    padding: 40px 20px;
+    background-color: var(--color-light-bg);
+    text-align: center;
+}
+
+.search-intro h1 {
+    font-size: 3em;
+    color: var(--color-dark-blue);
+    margin-bottom: 20px;
+}
+
+.search-intro p {
+    font-size: 1.2em;
+    color: var(--color-text-dark);
+    margin-bottom: 30px;
+}
+
+/* Improved Search Bar */
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-bar input[type="text"] {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-green-primary);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Button style is handled by .btn in global.css */
+
+
+/* =========== 2. Search Results Section =========== */
+/* This block of styles was moved from search.php <style> tag */
+.search-results-container {
+    background-color: var(--color-light-card); /* White background for results */
+    min-height: 50vh;
+}
+
+.search-results {
+    display: flex;
+    flex-direction: column; /* Stack results vertically */
+    align-items: center;
+    padding: 20px;
+    gap: 30px; /* Space between result cards */
+}
+
+/* Individual pose result card */
+.pose {
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    align-items: flex-start; /* Align to top */
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background-color: var(--color-light-card);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    gap: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.pose:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.pose-image-link {
+    flex-basis: 300px; /* Base width */
+    flex-grow: 1;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.pose img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.4s ease;
+}
+
+.pose:hover img {
+    transform: scale(1.05);
+}
+
+/* Text details of the pose */
+.pose-details {
+    flex-basis: 400px; /* Base width */
+    flex-grow: 2; /* Takes up more space */
+}
+
+.pose h2 {
+    font-size: 1.8em;
+    color: var(--color-dark-blue);
+    margin-bottom: 15px;
+}
+
+.pose p {
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.pose p strong {
+    color: var(--color-dark-blue);
+    font-weight: 500;
+}
+
+/* "No results" message */
+.no-results {
+    font-size: 1.2em;
+    color: var(--color-text-dark);
+    padding: 40px;
+    text-align: center;
+}
+.no-results.error {
+    color: #D8000C; /* Red for error */
+    background-color: #FFD2D2;
+    border: 1px solid #D8000C;
+    border-radius: 8px;
+}

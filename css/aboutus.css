@@ -1,0 +1,136 @@
+/* =================================================================
+   ABOUT US PAGE STYLES (aboutus.css)
+   ================================================================= */
+
+/* =========== 1. About Us Intro =========== */
+.aboutus-intro {
+    padding: 40px 20px;
+    background-color: var(--color-light-bg);
+    text-align: center;
+    width: 100%;
+}
+
+.aboutus-intro .aui-header {
+    font-size: 3em;
+    color: var(--color-dark-blue);
+    margin-bottom: 20px;
+}
+
+.aboutus-intro p {
+    margin: 10px 30px;
+    font-size: 1.2em;
+    color: var(--color-text-dark);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Filter buttons (currently commented out in HTML) */
+.category-buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+/* Button styles handled by .btn in global.css */
+
+
+/* =========== 2. Coder Profile Cards =========== */
+.coder-profile {
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    align-items: center;
+    width: 90%;
+    max-width: 1200px; /* Constrain max width */
+    margin: 40px auto; /* Centered with spacing */
+    padding: 30px;
+    border-radius: 15px; /* Softer corners */
+    background-color: var(--color-light-card);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    gap: 30px;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.coder-profile:hover {
+    background-color: var(--color-dark-blue);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* --- Profile Image --- */
+.coder-img {
+    flex-basis: 300px; /* Base width for the image container */
+    flex-grow: 1;
+}
+
+.coder-profile img {
+    padding: 10px;
+    width: 100%; /* Make image responsive */
+    max-width: 300px; /* But not larger than 300px */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 15px; /* Softer corners */
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.4s ease;
+}
+
+.coder-profile:hover img {
+    transform: scale(1.05);
+    border-radius: 15px;
+}
+
+/* --- Map --- */
+.coder-map{
+    flex-basis: 300px; /* Base width */
+    flex-grow: 2; /* Allow to grow larger */
+    width: 100%;
+    height: 400px;
+}
+
+.coder-map iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.4s ease;
+}
+
+.coder-map:hover iframe{
+    transform: scale(1.02);
+}
+
+/* --- Coder Details --- */
+.coder-details {
+    flex-basis: 300px; /* Base width */
+    flex-grow: 1;
+    width: 100%;
+}
+
+.coder-details h2 {
+    font-size: 1.8em;
+    color: var(--color-dark-blue);
+    margin-bottom: 20px;
+    transition: color 0.4s ease;
+}
+
+.coder-profile:hover h2 {
+    color: var(--color-green-primary);
+}
+
+.coder-details p {
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-size: 1.1em;
+    color: var(--color-text-dark);
+    margin: 10px 0;
+    transition: color 0.4s ease;
+}
+
+.coder-profile:hover p {
+    color: var(--color-text-light);
+}
+
+/* Custom fonts per coder */
+.mp { font-family: 'Courier New', monospace; }
+.vb { font-family: 'Georgia', serif; }
+.cd { font-family: 'Tahoma', sans-serif; }
+.ar { font-family: 'Verdana', sans-serif; }

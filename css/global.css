@@ -1,0 +1,259 @@
+/* =================================================================
+   GLOBAL STYLESHEET (global.css)
+   -----------------------------------------------------------------
+   This file contains all shared styles, fonts, variables, 
+   animations, and resets for the *entire* Diwata Yoga website.
+   ================================================================= */
+
+/* =========== 1. Font Import =========== */
+/* We're importing "Inter", a clean, professional, and modern font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+/* =========== 2. CSS Variables (Color Palette) =========== */
+/* Using variables makes it easy to change the site's colors later */
+:root {
+    --color-dark-blue: #1C2735;
+    --color-medium-blue: #4e6c92;
+    --color-green-primary: #4CAF50;
+    --color-green-dark: #45a049;
+    --color-light-bg: #F0F4F8;
+    --color-light-card: #FFFFFF;
+    --color-text-dark: #333;
+    --color-text-light: #F0F4F8;
+    --font-primary: 'Inter', 'Arial', sans-serif;
+}
+
+/* =========== 3. Global Resets & Base Styles =========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Professional standard for layout */
+}
+
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling for links */
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-light-bg);
+    color: var(--color-text-dark);
+    line-height: 1.6; /* Improves readability */
+}
+
+/* Base styles for semantic tags */
+main {
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll from animations */
+}
+
+section {
+    padding: 60px 20px; /* Standard vertical spacing for sections */
+    width: 100%;
+    max-width: 1400px; /* Constrains content width */
+    margin: 0 auto; /* Centers the content */
+}
+
+/* =========== 4. Reusable Button Styles =========== */
+/* A global '.btn' class for all buttons */
+.btn {
+    background-color: var(--color-green-primary);
+    color: var(--color-light-card);
+    border: none;
+    padding: 12px 24px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 8px; /* Softer, modern corners */
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: var(--color-green-dark);
+    transform: translateY(-2px); /* Adds a slight "lift" effect */
+}
+
+/* Style for active filter buttons (toggled by main.js) */
+.btn.active {
+    background-color: var(--color-dark-blue);
+    color: var(--color-light-bg);
+}
+
+/* Primary button (like in the hero section) */
+.btn-primary {
+    background-color: var(--color-green-primary);
+    border: none;
+    width: 200px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-green-dark);
+    transform: translateY(-2px);
+}
+
+
+/* =========== 5. Header & Navigation (Shared) =========== */
+/* This style is now global and applies to all pages */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--color-dark-blue);
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2); /* Adds depth */
+}
+
+.sticky-nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px; /* Matches section width */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sticky-nav .logo {
+    flex-shrink: 0;
+    margin-right: 20px; /* Adds space between logo and links */
+}
+
+.sticky-nav .logo img {
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.sticky-nav .logo:hover img {
+    transform: scale(1.1);
+}
+
+.sticky-nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.sticky-nav ul li {
+    margin: 0 10px;
+}
+
+.sticky-nav ul li a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sticky-nav ul li a:hover {
+    background-color: var(--color-medium-blue);
+    color: var(--color-light-card);
+}
+
+/* Highlights the current page's nav link */
+.sticky-nav ul li a.active {
+    color: var(--color-green-primary);
+    font-weight: 700;
+}
+
+/* =========== 6. Animation Keyframes =========== */
+/* Defines the animations that main.js will trigger */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* =========== 7. Animation Utility Classes =========== */
+/* These classes are in the HTML. They start as invisible. */
+.fade-in,
+.fade-in-up,
+.slide-in-left,
+.slide-in-right {
+    opacity: 0;
+    /* This variable allows staggered delays (e.g., style="--delay: 0.1s;") */
+    animation-delay: var(--delay, 0s); 
+}
+
+/* The 'main.js' file adds 'is-visible' when the element scrolls into view */
+.fade-in.is-visible {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.fade-in-up.is-visible {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.slide-in-left.is-visible {
+    animation: slideInLeft 0.8s ease forwards;
+}
+
+.slide-in-right.is-visible {
+    animation: slideInRight 0.8s ease forwards;
+}
+
+/* =========== 8. Basic Responsive (Mobile) Styles =========== */
+@media (max-width: 768px) {
+    /* Stacks nav links on mobile */
+    .sticky-nav-container {
+        flex-direction: column;
+    }
+
+    .sticky-nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .sticky-nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sticky-nav ul li a {
+        padding: 10px;
+    }
+
+    /* Adjust section padding for smaller screens */
+    section {
+        padding: 40px 15px;
+    }
+
+    /* Fix hero text size */
+    .glass-effect h1 {
+        font-size: 2.5em;
+    }
+    .glass-effect h3 {
+        font-size: 1.5em;
+    }
+}
