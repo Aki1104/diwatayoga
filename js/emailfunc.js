@@ -32,8 +32,8 @@ function setupContactForm() {
         
         // Get form data
         const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
+            from_name: document.getElementById('name').value,
+            from_email: document.getElementById('email').value,
             message: document.getElementById('message').value,
             timestamp: new Date().toLocaleString(),
             page: window.location.pathname.split('/').pop() || 'index.html'
