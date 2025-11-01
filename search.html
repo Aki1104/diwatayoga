@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/search.css">
 
     <title>Search - Diwata Yoga</title>
+     <link rel="icon" href="assets/images/logo_diwata_yoga.png" type="image/png">
 </head>
 <body>
 
@@ -62,7 +63,7 @@
             </div>
 
             <div class="results-container" id="resultsContainer">
-                <!-- Search results will be displayed here by JavaScript -->
+                <!-- Default content - will be replaced by JavaScript -->
                 <div class="search-suggestions fade-in-up">
                     <h3>Popular Searches</h3>
                     <div class="suggestions-grid">
@@ -104,12 +105,13 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Search functionality for static HTML version
+        // Enhanced Search functionality for static HTML version
         document.addEventListener('DOMContentLoaded', function() {
             const searchForm = document.getElementById('searchForm');
             const searchInput = document.getElementById('searchInput');
             const resultsContainer = document.getElementById('resultsContainer');
             let posesData = [];
+            let defaultContent = resultsContainer.innerHTML;
 
             // Load poses data from XML
             fetch('assets/data/poses.xml')
@@ -139,6 +141,21 @@
                 
                 if (query) {
                     performSearch(query);
+                } else {
+                    // If search is empty, show default content
+                    showDefaultContent();
+                }
+            });
+
+            // Real-time search as user types
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                
+                if (query.length > 0) {
+                    performSearch(query);
+                } else {
+                    // If input is cleared, show default content
+                    showDefaultContent();
                 }
             });
 
@@ -161,7 +178,8 @@
                 const results = posesData.filter(pose => 
                     pose.name.toLowerCase().includes(query) ||
                     pose.description.toLowerCase().includes(query) ||
-                    pose.benefits.toLowerCase().includes(query)
+                    pose.benefits.toLowerCase().includes(query) ||
+                    pose.difficulty.toLowerCase().includes(query)
                 );
 
                 displayResults(results, query);
@@ -214,6 +232,22 @@
                 } else {
                     showNoResults(query);
                 }
+            }
+
+            // Show default content (popular searches)
+            function showDefaultContent() {
+                resultsContainer.innerHTML = defaultContent;
+                
+                // Re-attach event listeners to suggestion tags
+                setTimeout(() => {
+                    document.querySelectorAll('.suggestion-tag').forEach(tag => {
+                        tag.addEventListener('click', function() {
+                            const searchTerm = this.getAttribute('data-search');
+                            searchInput.value = searchTerm;
+                            performSearch(searchTerm);
+                        });
+                    });
+                }, 100);
             }
 
             // Show no results message
