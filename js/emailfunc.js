@@ -41,7 +41,7 @@ function setupContactForm() {
         
         // Send email using EmailJS
         // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
-        emailjs.send('service_pivcb39', 'template_nukxnxz', formData)
+        emailjs.send('service_n4y25i2', 'template_nukxnxz', formData)
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
                 
