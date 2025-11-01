@@ -9,6 +9,9 @@
 
     <title>Search - Diwata Yoga</title>
     <link rel="icon" href="assets/images/logo_diwata_yoga.png" type="image/png">
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -90,8 +93,8 @@
             <div class="footer-contact">
                 <h3>Get in Touch</h3>
                 <form id="contactForm" class="contact-form">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <input type="text" id="name" name="from_name" placeholder="Your Name" required>
+                    <input type="email" id="email" name="from_email" placeholder="Your Email" required>
                     <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
                     <button type="submit" class="btn btn-primary">Send Message</button>
                     <div id="form-message" class="form-message"></div>
@@ -104,11 +107,8 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
     <script src="js/emailfunc.js"></script>
-
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js/main.js"></script>
 
     <script>
         // Enhanced Search functionality for static HTML version

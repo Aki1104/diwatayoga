@@ -2,18 +2,20 @@
  * EmailJS Functionality for Diwata Yoga Contact Forms
  */
 
-// Initialize EmailJS when the script loads
-(function() {
+// Wait for both DOM and EmailJS to be ready
+function initializeEmailJS() {
     // Check if emailjs is loaded before initializing
     if (typeof emailjs !== 'undefined') {
         emailjs.init({
             publicKey: "xT9hVOJiXwTvpouPF", // Your Public Key
         });
-        console.log('EmailJS initialized');
+        console.log('EmailJS initialized successfully');
+        return true;
     } else {
-        console.error("EmailJS SDK not loaded.");
+        console.error("EmailJS SDK not loaded yet.");
+        return false;
     }
-})();
+}
 
 // Contact form handler
 function setupContactForm() {
@@ -27,7 +29,44 @@ function setupContactForm() {
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
-        debugFormData();
+        
+        // Check if EmailJS is ready
+        if (typeof emailjs === 'undefined') {
+            showFormMessage('Email service not ready. Please refresh the page and try again.', 'error');
+            return;
+        }
+
+        // Get form values directly
+        const from_name = document.getElementById('name').value.trim();
+        const from_email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        console.log('Form values before validation:', { from_name, from_email, message });
+
+        // VALIDATE FORM FIELDS - PREVENT EMPTY SUBMISSIONS
+        if (!from_name) {
+            showFormMessage('Please enter your name.', 'error');
+            return;
+        }
+        
+        if (!from_email) {
+            showFormMessage('Please enter your email address.', 'error');
+            return;
+        }
+        
+        if (!message) {
+            showFormMessage('Please enter your message.', 'error');
+            return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(from_email)) {
+            showFormMessage('Please enter a valid email address.', 'error');
+            return;
+        }
+
+        console.log('Form values AFTER validation:', { from_name, from_email, message });
 
         // Get the button and show a "sending" state
         const submitButton = this.querySelector('button[type="submit"]');
@@ -35,7 +74,7 @@ function setupContactForm() {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
 
-        // Send the form using EmailJS - USING sendForm() like your working portfolio
+        // Send the form using EmailJS
         emailjs.sendForm('service_n4y25i2', 'template_nukxnxz', this)
             .then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
@@ -78,20 +117,37 @@ function setupContactForm() {
     }
 }
 
-// Debug function to your emailfunc.js
+// Debug function - Use direct element access
 function debugFormData() {
-    const form = document.getElementById('contactForm');
-    if (form) {
-        const formData = new FormData(form);
-        console.log('Form data:', {
-            from_name: formData.get('from_name'),
-            from_email: formData.get('from_email'),
-            message: formData.get('message')
-        });
-    }
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    
+    console.log('Form data (direct access):', {
+        from_name: nameInput ? nameInput.value : 'NOT FOUND',
+        from_email: emailInput ? emailInput.value : 'NOT FOUND',
+        message: messageInput ? messageInput.value : 'NOT FOUND'
+    });
 }
 
-// Initialize when DOM is loaded
+// Initialize when everything is ready
 document.addEventListener('DOMContentLoaded', function() {
-    setupContactForm();
+    // Try to initialize EmailJS immediately
+    let emailjsReady = initializeEmailJS();
+    
+    // If EmailJS isn't ready, wait a bit and try again
+    if (!emailjsReady) {
+        console.log('Waiting for EmailJS to load...');
+        setTimeout(() => {
+            emailjsReady = initializeEmailJS();
+            if (emailjsReady) {
+                console.log('EmailJS loaded after delay');
+                setupContactForm();
+            } else {
+                console.error('EmailJS failed to load after delay');
+            }
+        }, 1000);
+    } else {
+        setupContactForm();
+    }
 });
