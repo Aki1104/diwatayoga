@@ -119,21 +119,48 @@
             let posesData = [];
             let defaultContent = resultsContainer.innerHTML;
 
+            console.log('Search page loaded');
+
             // Load poses data from XML
             fetch('assets/data/poses.xml')
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
                 .then(str => {
+                    console.log('XML data loaded successfully');
                     const parser = new DOMParser();
                     const xml = parser.parseFromString(str, "application/xml");
-                    const poses = xml.getElementsByTagName('pose');
                     
-                    posesData = Array.from(poses).map(pose => ({
-                        name: pose.getElementsByTagName('name')[0].textContent,
-                        description: pose.getElementsByTagName('description')[0].textContent,
-                        benefits: pose.getElementsByTagName('benefits')[0].textContent,
-                        difficulty: pose.getElementsByTagName('difficulty')[0].textContent,
-                        image: pose.getElementsByTagName('image')[0].textContent
-                    }));
+                    // Check for XML parsing errors
+                    const parseError = xml.getElementsByTagName('parsererror');
+                    if (parseError.length > 0) {
+                        throw new Error('XML parsing error: ' + parseError[0].textContent);
+                    }
+                    
+                    const poses = xml.getElementsByTagName('pose');
+                    console.log('Found poses in XML:', poses.length);
+                    
+                    posesData = Array.from(poses).map(pose => {
+                        const name = pose.getElementsByTagName('name')[0]?.textContent || 'Unknown Pose';
+                        const description = pose.getElementsByTagName('description')[0]?.textContent || '';
+                        const benefits = pose.getElementsByTagName('benefits')[0]?.textContent || '';
+                        const difficulty = pose.getElementsByTagName('difficulty')[0]?.textContent || 'Easy';
+                        const image = pose.getElementsByTagName('image')[0]?.textContent || 'logo_diwata_yoga.png';
+                        
+                        return {
+                            name: name,
+                            description: description,
+                            benefits: benefits,
+                            difficulty: difficulty,
+                            image: image
+                        };
+                    });
+                    
+                    console.log('Processed poses data:', posesData);
+                    console.log('Sample pose:', posesData[0]);
                 })
                 .catch(error => {
                     console.error('Error loading poses data:', error);
@@ -144,6 +171,7 @@
             searchForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 const query = searchInput.value.trim().toLowerCase();
+                console.log('Form submitted with query:', query);
                 
                 if (query) {
                     performSearch(query);
@@ -156,6 +184,7 @@
             // Real-time search as user types
             searchInput.addEventListener('input', function() {
                 const query = this.value.trim().toLowerCase();
+                console.log('Input changed:', query);
                 
                 if (query.length > 0) {
                     performSearch(query);
@@ -169,34 +198,43 @@
             document.querySelectorAll('.suggestion-tag').forEach(tag => {
                 tag.addEventListener('click', function() {
                     const searchTerm = this.getAttribute('data-search');
+                    console.log('Suggestion clicked:', searchTerm);
                     searchInput.value = searchTerm;
                     performSearch(searchTerm);
                 });
             });
 
-            // Perform search function
+            // Perform search function - FOCUS ONLY ON POSE NAMES
             function performSearch(query) {
+                console.log('Performing search for:', query);
+                console.log('Available poses data:', posesData.length);
+                
                 if (!posesData.length) {
+                    console.log('No poses data available');
                     showError('Pose data not loaded yet. Please try again.');
                     return;
                 }
 
-                const results = posesData.filter(pose => 
-                    pose.name.toLowerCase().includes(query) ||
-                    pose.description.toLowerCase().includes(query) ||
-                    pose.benefits.toLowerCase().includes(query) ||
-                    pose.difficulty.toLowerCase().includes(query)
-                );
+                // Search ONLY in pose names (not descriptions or benefits)
+                const results = posesData.filter(pose => {
+                    const nameMatch = pose.name.toLowerCase().includes(query);
+                    console.log(`Checking "${pose.name}" for "${query}": ${nameMatch}`);
+                    return nameMatch;
+                });
 
+                console.log('Search results found:', results.length);
+                console.log('Results:', results);
                 displayResults(results, query);
             }
 
             // Display search results
             function displayResults(results, query) {
+                console.log('Displaying results:', results.length, 'for query:', query);
+                
                 if (results.length > 0) {
                     let html = `
                         <div class="results-header fade-in-up">
-                            <h2>Found ${results.length} result${results.length > 1 ? 's' : ''} for "${query}"</h2>
+                            <h2>Found ${results.length} yoga pose${results.length > 1 ? 's' : ''} for "${query}"</h2>
                         </div>
                         <div class="poses-grid">
                     `;
@@ -236,12 +274,14 @@
                         });
                     }, 100);
                 } else {
+                    console.log('No results found, showing no results message');
                     showNoResults(query);
                 }
             }
 
             // Show default content (popular searches)
             function showDefaultContent() {
+                console.log('Showing default content');
                 resultsContainer.innerHTML = defaultContent;
                 
                 // Re-attach event listeners to suggestion tags
@@ -253,36 +293,82 @@
                             performSearch(searchTerm);
                         });
                     });
+                    
+                    // Trigger animations for default content
+                    const animatedElements = resultsContainer.querySelectorAll('.fade-in-up');
+                    animatedElements.forEach(el => {
+                        el.classList.add('is-visible');
+                    });
                 }, 100);
             }
 
-            // Show no results message
+            // Show no results message - IMPROVED
             function showNoResults(query) {
+                console.log('Showing no results for:', query);
                 resultsContainer.innerHTML = `
                     <div class="no-results fade-in">
                         <div class="no-results-icon">🔍</div>
-                        <h3>No results found</h3>
-                        <p>We couldn't find any poses matching "<strong>${query}</strong>"</p>
-                        <p class="no-results-tip">Try searching for common poses like "mountain", "warrior", or "downward"</p>
+                        <h3>No Yoga Poses Found</h3>
+                        <p>We couldn't find any yoga poses matching "<strong>${query}</strong>"</p>
+                        <div class="no-results-suggestions">
+                            <h4>Try searching for:</h4>
+                            <div class="suggestions-grid">
+                                <a href="javascript:void(0)" class="suggestion-tag" data-search="mountain">Mountain</a>
+                                <a href="javascript:void(0)" class="suggestion-tag" data-search="warrior">Warrior</a>
+                                <a href="javascript:void(0)" class="suggestion-tag" data-search="downward">Downward Dog</a>
+                                <a href="javascript:void(0)" class="suggestion-tag" data-search="tree">Tree</a>
+                                <a href="javascript:void(0)" class="suggestion-tag" data-search="child">Child's</a>
+                                <a href="javascript:void(0)" class="suggestion-tag" data-search="cobra">Cobra</a>
+                            </div>
+                        </div>
+                        <p class="no-results-tip">Search for pose names only (e.g., "warrior", "tree", "mountain")</p>
                     </div>
                 `;
+                
+                // Re-attach event listeners to suggestion tags in no results
+                setTimeout(() => {
+                    document.querySelectorAll('.no-results .suggestion-tag').forEach(tag => {
+                        tag.addEventListener('click', function() {
+                            const searchTerm = this.getAttribute('data-search');
+                            searchInput.value = searchTerm;
+                            performSearch(searchTerm);
+                        });
+                    });
+                    
+                    // Trigger animation for no results
+                    const noResultsElement = resultsContainer.querySelector('.no-results');
+                    if (noResultsElement) {
+                        noResultsElement.classList.add('is-visible');
+                    }
+                }, 100);
             }
 
             // Show error message
             function showError(message) {
+                console.log('Showing error:', message);
                 resultsContainer.innerHTML = `
                     <div class="no-results error fade-in">
                         <div class="no-results-icon">⚠️</div>
-                        <h3>Error</h3>
+                        <h3>Error Loading Poses</h3>
                         <p>${message}</p>
+                        <p class="no-results-tip">Please refresh the page and try again.</p>
                     </div>
                 `;
+                
+                // Trigger animation for error
+                setTimeout(() => {
+                    const errorElement = resultsContainer.querySelector('.no-results');
+                    if (errorElement) {
+                        errorElement.classList.add('is-visible');
+                    }
+                }, 100);
             }
 
             // Handle URL parameters for direct search links
             const urlParams = new URLSearchParams(window.location.search);
             const searchParam = urlParams.get('search');
             if (searchParam) {
+                console.log('URL parameter found:', searchParam);
                 searchInput.value = searchParam;
                 performSearch(searchParam);
             }
