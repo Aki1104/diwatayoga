@@ -27,6 +27,7 @@ function setupContactForm() {
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault(); // Prevent default form submission
+        debugFormData();
 
         // Get the button and show a "sending" state
         const submitButton = this.querySelector('button[type="submit"]');
@@ -74,6 +75,19 @@ function setupContactForm() {
             // Fallback alert if form message element doesn't exist
             alert(message);
         }
+    }
+}
+
+// Debug function to your emailfunc.js
+function debugFormData() {
+    const form = document.getElementById('contactForm');
+    if (form) {
+        const formData = new FormData(form);
+        console.log('Form data:', {
+            from_name: formData.get('from_name'),
+            from_email: formData.get('from_email'),
+            message: formData.get('message')
+        });
     }
 }
 
