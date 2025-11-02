@@ -228,7 +228,7 @@ To make the contact form work:
 
 ### Contact Information
 - **Location**: Upper Tuyo, Balanga City, Bataan
-- **Phone**: 09691731931 / 09386109857
+- **Email**: marcsteeven28@gmail.com / vny.btst@gmail.com
 
 ## 📄 License
 © 2024 Diwata Yoga. All rights reserved.
