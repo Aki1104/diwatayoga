@@ -1,122 +1,169 @@
-# 🧘 Diwata Yoga Website
+# Diwata Yoga
+### A free, immersive online yoga platform for practitioners of all levels — from first breath to advanced flow.
 
-A beautiful, responsive yoga website built with modern web technologies to provide an immersive yoga experience for practitioners of all levels.
+![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel&style=flat-square)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)
+![Stack](https://img.shields.io/badge/Stack-HTML%20%C2%B7%20CSS%20%C2%B7%20Vanilla%20JS-orange?style=flat-square)
 
-![Diwata Yoga](assets/images/logo_diwata_yoga.png)
+---
 
-## 🌟 Features
+## Table of Contents
 
-### 🎨 Modern Design
-- **Elegant Color Scheme**: Professional green and gold palette representing nature and spirituality.
-- **Responsive Layout**: Fully responsive design that works on all devices.
-- **Smooth Animations**: CSS animations and transitions for an enhanced user experience.
-- **Professional Typography**: Playfair Display for headings and Poppins for body text.
+- [What is this?](#what-is-this)
+- [Screenshots](#screenshots)
+- [The Problem](#the-problem)
+- [The Solution](#the-solution)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Live Site](#live-site)
+- [Project Structure](#project-structure)
+- [Contact & Support](#contact--support)
+- [License](#license)
 
-### 📱 Pages & Functionality
-- **Home**: Engaging hero section with featured content and instructor showcase.
-- **Information**: Comprehensive yoga resources including articles, poses, and video tutorials.
-- **Search**: Dynamic pose search functionality with XML data integration.
-- **Gallery**: Beautiful image gallery with filtering capabilities.
-- **About Us**: Team information with interactive maps and contact details.
+---
 
-### ⚡ Interactive Features
-- **Mobile Navigation**: Hamburger menu for mobile devices.
-- **Content Filtering**: Filter poses, videos, and gallery items by difficulty and categories.
-- **Smooth Scrolling**: Enhanced navigation within pages.
-- **Contact Forms**: Email integration using EmailJS.
-- **Scroll Animations**: Elements animate as you scroll down the page.
-- **Client-Side Search**: Pure JavaScript search without server requirements.
+## What is this?
 
-## 🛠️ Technology Stack
+Diwata Yoga is a free, fully static yoga web platform built for students and practitioners of all skill levels. It provides a structured library of yoga poses, curated video tutorials, philosophy articles, and a searchable pose database — all accessible in the browser with no account required.
 
-### Frontend
-- **HTML5**: Semantic markup with modern structure.
-- **CSS3**: Advanced features including CSS Grid, Flexbox, and CSS Variables.
-- **JavaScript (ES6+)**: Vanilla JavaScript for all interactions.
-- **CSS Animations**: Keyframe animations and transitions.
+---
 
-### Data & External Services
-- **XML**: Data storage for yoga poses (`assets/data/poses.xml`).
-- **EmailJS**: Contact form email service integration.
-- **Google Fonts**: Typography (Poppins & Playfair Display).
-- **YouTube Embeds**: Video tutorials integration.
-- **Google Maps**: Location maps in the About Us page.
+## Screenshots
 
-## 📁 Project Structure
+**Home — Hero & Offerings**
+
+![Home](./assets/images/screenshots/home.png)
+
+**Information — Pose Library & Video Tutorials**
+
+![Information](./assets/images/screenshots/information.png)
+
+**Search — Client-Side Pose Search**
+
+![Search](./assets/images/screenshots/search.png)
+
+**Gallery**
+
+![Gallery](./assets/images/screenshots/gallery.png)
+
+---
+
+## The Problem
+
+Yoga is one of the most widely practiced wellness disciplines in the world, yet beginners often struggle to find a single, organized, free resource that covers poses, tutorials, and philosophy together.
+
+- Most yoga platforms lock content behind paywalls or subscriptions
+- Beginners have no structured progression path from foundational to advanced poses
+- Video tutorials, written guides, and pose references are scattered across multiple websites
+- No centralized, filterable database for exploring poses by difficulty level
+
+---
+
+## The Solution
+
+Diwata Yoga consolidates everything a yoga practitioner needs — from their very first Mountain Pose to advanced Ashtanga sequences — into one clean, free, publicly accessible website. Users can browse an organized pose library filtered by difficulty, follow along with curated video sessions from beginner to advanced, read philosophy articles, and explore a community gallery, all without creating an account.
+
+---
+
+## Key Features
+
+- **Yoga Pose Library** — Categorized collection of Easy, Intermediate, and Hard asanas, each with a description, image, and benefits
+- **Difficulty Filtering** — Filter poses and video tutorials by skill level (Easy / Intermediate / Hard) or video duration (15 / 30 / 45 / 60 min)
+- **Client-Side Pose Search** — Instant search powered by Vanilla JS querying a local XML pose database — no server required
+- **Video Tutorial Gallery** — 12 curated YouTube-embedded sessions ranging from 15-minute morning routines to full-hour advanced flows
+- **Philosophy Articles** — Featured readings on yoga authenticity, Sādhana, Hatha Yoga history, and beginner tips
+- **Inspiration Gallery** — Browseable photo gallery of community and instructor imagery with category filters
+- **EmailJS Contact Form** — Visitors can send messages directly from the browser without a backend
+- **Mobile-Responsive Navigation** — Hamburger menu for seamless experience on all screen sizes
+- **Scroll Animations** — Page elements animate into view as users scroll for a polished, immersive feel
+- **Instructor Showcase** — Profiles of featured certified yoga instructors on the home page
+- **Community Testimonials** — Real member stories displayed on the home page
+- **Google Maps Integration** — Embedded location map on the About Us page
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, Vanilla JavaScript (ES6+) |
+| Backend | None — fully static |
+| Data | XML (`assets/data/poses.xml` — client-side parsed) |
+| Hosting | Vercel |
+| Auth | None — public access |
+| Fonts | Poppins & Playfair Display — Google Fonts |
+| External Services | EmailJS · YouTube Embeds · Google Maps |
+
+No frameworks. Clean vanilla code that runs entirely in the browser.
+
+---
+
+## Live Site
+
+🔗 **[diwatayoga.vercel.app](https://diwatayoga.vercel.app)**
+
+- **Home** — `/index.html`
+- **Information (Poses & Videos)** — `/information.html`
+- **Search** — `/search.html`
+- **Gallery** — `/gallery.html`
+- **About Us** — `/aboutus.html`
+
+> Public access — no login required.
+
+---
+
+## Project Structure
 
 ```
-diwata-yoga/
-├── index.html          # Home page 
-├── information.html    # Information & resources
-├── search.html         # Search functionality
-├── gallery.html        # Image gallery
-├── aboutus.html        # About Us page
-│
-├── css/                # Stylesheets
-│   ├── global.css      # Global styles & variables
-│   ├── home.css
-│   ├── information.css
-│   ├── gallery.css
-│   ├── aboutus.css
-│   └── search.css
-│
-├── js/                 # JavaScript files
-│   ├── main.js         # Main functionality & animations
-│   └── emailfunc.js    # EmailJS integration
-│
+├── index.html              ← Home page
+├── information.html        ← Pose library, videos & articles
+├── search.html             ← Client-side pose search
+├── gallery.html            ← Inspiration gallery
+├── aboutus.html            ← Team & mission
+├── css/                    ← Per-page and global stylesheets
+├── js/
+│   ├── main.js             ← Navigation, animations & filtering
+│   └── emailfunc.js        ← EmailJS contact form integration
 └── assets/
-    ├── data/
-    │   └── poses.xml   # Yoga poses database
-    └── images/         # All project images
-        ├── logo_diwata_yoga.png
-        ├── position_*.webp
-        ├── instructor_*.jpg
-        └── ...
+    ├── data/poses.xml      ← Yoga poses database
+    └── images/             ← All site imagery
 ```
 
-## 🚀 Quick Start
+---
 
-### Prerequisites
-- A modern web browser.
-- A local web server (optional, but recommended for full functionality).
+## Contact & Support
 
-### Running Locally
+Built and maintained by **Innovator Crews**
 
-1.  **Download or Clone the Project**
-    ```bash
-    # If you use Git
-    git clone [https://your-repository-url.git](https://your-repository-url.git)
-    # Or download the ZIP and extract it
-    ```
+---
 
-2.  **Choose a Method to Run:**
+**Marc Parubrub** — Lead Developer
 
-    #### Method 1: Simple (Browser)
-    Open the `index.html` file directly in your web browser.
-    > **Note:** Some features (like fetching the `poses.xml` file) may be blocked by browser security (CORS policy) when run this way.
+- **Portfolio:** [msbp-portfolio.vercel.app](https://msbp-portfolio.vercel.app)
+- **Email:** [marcparubrub.dev@gmail.com](mailto:marcparubrub.dev@gmail.com)
+- **GitHub:** [@Aki1104](https://github.com/Aki1104)
 
-    #### Method 2: Local Server (Recommended)
-    Use a simple local server to avoid browser security issues.
+**Veeny Bautista** — Assistant Developer
 
-    * **Using Python 3:**
-        ```bash
-        cd /path/to/diwata-yoga
-        python -m http.server 8000
-        ```
-    * **Using Node.js (with `http-server`):**
-        ```bash
-        # Install http-server if you don't have it
-        npm install -g http-server
-        # Run from the project's root directory
-        http-server
-        ```
-    * **Using PHP:**
-        ```bash
-        cd /path/to/diwata-yoga
-        php -S localhost:8000
-        ```
-3.  **Access the Website**
-    Navigate to `http://localhost:8000` (or the port your server is using) in your browser.
+- **Portfolio:** [veenybautista.vercel.app](https://veenybautista.vercel.app)
+- **Email:** [vrmb.tech@gmail.com](mailto:vrmb.tech@gmail.com)
+- **GitHub:** [@yashamiyuki](https://github.com/yashamiyuki)
+
+**Leander Ochea** — Developer
+
+**Armabel Ramos** — Developer
+
+For bug reports or questions — reach out directly via email above.
+
+---
+
+## License
+
+© 2024 Diwata Yoga. All rights reserved.
+
+---
+
+*Built with care by Innovator Crews for all who seek balance and clarity through yoga.*
 
 ### Configure EmailJS (Optional)
 To make the contact form work:
