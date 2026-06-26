@@ -122,6 +122,32 @@
     font-weight: 600;
 }
 
+/* Single BUVA team card: logo + info only (no map column) */
+.team-member.team-buva {
+    grid-template-columns: 300px 1fr;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.member-logo {
+    background: var(--color-surface);
+}
+
+.member-logo img {
+    object-fit: contain;
+}
+
+.member-details a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.member-details a:hover {
+    text-decoration: underline;
+}
+
 .member-map {
     width: 100%;
     height: 300px;
@@ -156,7 +182,8 @@
         font-size: 2rem;
     }
     
-    .team-member {
+    .team-member,
+    .team-member.team-buva {
         grid-template-columns: 1fr;
         padding: var(--spacing-md);
     }

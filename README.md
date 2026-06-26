@@ -19,13 +19,10 @@ project:
   status: Live
   live_url: https://diwatayoga.vercel.app
   github_url: https://github.com/Aki1104/diwatayoga
-  role: PM & Lead Front-End Developer
+  built_by: BUVA (Back Up Virtual Assistance)
+  project_type: Passion project — skills showcase
+  contact_email: backupvirtualassistance@gmail.com
   timeline: Aug 2024 – May 2026 (ongoing · v2.0 in planning)
-  team:
-    - { name: Marc Parubrub,   role: Lead Developer,      did: Architecture, search, filtering, animations, EmailJS }
-    - { name: Veeny Bautista,  role: Assistant Developer, did: UI styling, gallery, responsive layout }
-    - { name: Leander Ochea,   role: Developer,           did: Content + pose data }
-    - { name: Armabel Ramos,   role: Developer,           did: Content + QA }
 
   tagline: A free, account-free online yoga studio with a searchable pose library, guided videos, and philosophy for every level.
 
@@ -263,27 +260,9 @@ How far native browser APIs go *before* you actually need a framework or a serve
 
 ## Contact & Support
 
-Built and maintained by **Innovator Crews**
+Built and maintained by **BUVA — Back Up Virtual Assistance**.
 
----
-
-**Marc Parubrub** — Lead Developer
-
-- **Portfolio:** [msbp-portfolio.vercel.app](https://msbp-portfolio.vercel.app)
-- **Email:** [marcparubrub.dev@gmail.com](mailto:marcparubrub.dev@gmail.com)
-- **GitHub:** [@Aki1104](https://github.com/Aki1104)
-
-**Veeny Bautista** — Assistant Developer
-
-- **Portfolio:** [veenybautista.vercel.app](https://veenybautista.vercel.app)
-- **Email:** [vrmb.tech@gmail.com](mailto:vrmb.tech@gmail.com)
-- **GitHub:** [@yashamiyuki](https://github.com/yashamiyuki)
-
-**Leander Ochea** — Developer
-
-**Armabel Ramos** — Developer
-
-For bug reports or questions — reach out directly via email above.
+📧 **[backupvirtualassistance@gmail.com](mailto:backupvirtualassistance@gmail.com)**
 
 ---
 
@@ -293,7 +272,7 @@ For bug reports or questions — reach out directly via email above.
 
 ---
 
-*Built with care by Innovator Crews for all who seek balance and clarity through yoga.*
+*Built with care by BUVA for all who seek balance and clarity through yoga.*
 
 ### Configure EmailJS (Optional)
 To make the contact form work:
@@ -399,13 +378,12 @@ To make the contact form work:
 
 ## 📞 Contact & Support
 
-### Developers
-- **Marc Parubrub** (Lead Developer)
-- **Veeny Bautista** (Assistant Developer)
+Built and maintained by **BUVA — Back Up Virtual Assistance**.
 
 ### Contact Information
-- **Location**: Upper Tuyo, Balanga City, Bataan
-- **Email**: marcsteeven28@gmail.com / vny.btst@gmail.com
+
+- **Email**: [backupvirtualassistance@gmail.com](mailto:backupvirtualassistance@gmail.com)
+- **Location**: Balanga City, Bataan
 
 ## 📄 License
 © 2024 Diwata Yoga. All rights reserved.

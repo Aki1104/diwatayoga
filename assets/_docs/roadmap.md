@@ -1,5 +1,5 @@
 # Diwata Yoga — Functional Improvement Roadmap
-### Version 2.0 Planning Document · Innovator Crews · 2026
+### Version 2.0 Planning Document · BUVA · 2026
 
 > **Scope:** All improvements listed here are achievable with zero backend, zero server cost, and zero new paid dependencies.
 > The entire site remains static HTML/CSS/JS deployed on Vercel.
@@ -714,5 +714,5 @@ All new features degrade gracefully:
 
 ---
 
-*Roadmap authored by Innovator Crews · Diwata Yoga v2.0 · 2026*
-*Marc Parubrub · Veeny Bautista · Leander Ochea · Armabel Ramos*
+*Roadmap authored by BUVA · Diwata Yoga v2.0 · 2026*
+*BUVA*
